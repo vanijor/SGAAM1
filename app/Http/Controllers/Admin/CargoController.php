@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class FuncionarioController extends Controller
+class CargoController extends Controller
 {
     public function index()
     {
-        return view('admin.funcionario.index');
+        return view('admin.cargo.index');
     }
 }
