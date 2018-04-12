@@ -110,6 +110,11 @@ return [
     'menu' => [
         'MENU',
         [
+            'text' => 'Funcionário',
+            'url'  => 'admin/funcionario',
+            'icon'  => 'user',
+        ],
+        [
             'text' => 'Professor',
             'url'  => 'admin/professor',
             'icon'  => 'user',

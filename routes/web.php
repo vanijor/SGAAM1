@@ -1,5 +1,6 @@
 <?php
 $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'],function(){
+    $this->get('funcionario', 'FuncionarioController@index')->name('admin.funcionario');
     $this->get('plano', 'PlanoController@index')->name('admin.plano');
     $this->get('pagamento', 'PagamentoController@index')->name('admin.pagamento');
     $this->get('modalidade', 'ModalidadeController@index')->name('admin.modalidade');
