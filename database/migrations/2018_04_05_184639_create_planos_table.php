@@ -14,11 +14,10 @@ class CreatePlanosTable extends Migration
     public function up()
     {
         Schema::create('planos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('cd_plano');
-            $table->string('tipo_plano');
+            $table->increments('id')->unique();
+            $table->string('tipo');
             $table->string('forma_pagamento');
-            $table->string('nm_modalidade');
+            $table->integer('id_modalidade')->references('id')->on('modalidades')->onDelete('cascade');
         });
     }
 

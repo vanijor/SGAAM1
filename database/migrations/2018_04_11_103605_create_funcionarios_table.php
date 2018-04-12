@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlunosTable extends Migration
+class CreateFuncionariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAlunosTable extends Migration
      */
     public function up()
     {
-        Schema::create('alunos', function (Blueprint $table) {
+        Schema::create('funcionarios', function (Blueprint $table) {
             $table->increments ('id');
             $table->string('nome');
             $table->integer('cpf')->unique();
@@ -27,9 +27,10 @@ class CreateAlunosTable extends Migration
             $table->date('dt_nascimento');
             $table->integer('telefone');
             $table->string('email');
-            $table->integer('id_plano')->references('id')->on('planos')->onDelete('cascade');
-            $table->integer('id_modalidade')->references('id')->on('modalidades')->onDelete('cascade');
-            $table->timestamps();
+            $table->integer('id_cargo')->references('id')->on('cargos')->onDelete('cascade');
+            $table->integer('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->dateTime('dt_admissao');
+            $table->dateTime('dt_demissao');
         });
     }
 
@@ -40,6 +41,6 @@ class CreateAlunosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alunos');
+        Schema::dropIfExists('funcionarios');
     }
 }

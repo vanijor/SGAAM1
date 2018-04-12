@@ -12,5 +12,5 @@
 @stop
 
 @section('content')
-    
+
 @stop

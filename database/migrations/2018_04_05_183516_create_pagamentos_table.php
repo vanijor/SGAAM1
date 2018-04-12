@@ -14,13 +14,13 @@ class CreatePagamentosTable extends Migration
     public function up()
     {
         Schema::create('pagamentos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('cd_pagamento');
+            $table->increments('id')->unique();
+            $table->integer('pagamento');
             $table->string('mes_referente');
             $table->date('dt_vencimento');
             $table->double('vl_mensalidade');
-            $table->string('nm_aluno');
-            $table->string('nm_modalidade');
+            $table->integer('id_aluno')->references('id')->on('alunos')->onDelete('cascade');
+            $table->integer('id_modalidade')->references('id')->on('modalidades')->onDelete('cascade');
             $table->timestamps();
         });
     }

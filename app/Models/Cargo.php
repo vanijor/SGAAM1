@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Academia extends Model
+class Cargo extends Model
 {
-    public $timestamps = false;
+    //
 }
