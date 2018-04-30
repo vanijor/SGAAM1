@@ -29,6 +29,7 @@
                     <th>Data Nascimento</th>
                     <th>Telefone</th>
                     <th>E-mail</th>
+                    <th>Cargo</th>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -40,6 +41,7 @@
                     <td>11-22-3333</td>
                     <td>35690000</td>
                     <td>email@email.com.br</td>
+                    <td>Professor</td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -51,6 +53,7 @@
                     <td>11-22-3333</td>
                     <td>35690000</td>
                     <td>email@email.com.br</td>
+                    <td>Balconista</td>
                 </tr>
                 <tr>
                     <td>3</td>
@@ -62,6 +65,7 @@
                     <td>11-22-3333</td>
                     <td>35690000</td>
                     <td>email@email.com.br</td>
+                    <td>Faxineiro</td>
                 </tr>
                 <tr>
                     <td>4</td>
@@ -73,6 +77,7 @@
                     <td>11-22-3333</td>
                     <td>35690000</td>
                     <td>email@email.com.br</td>
+                    <td>Professor</td>
                 </tr>
                 <tr>
                     <td>5</td>
@@ -84,6 +89,7 @@
                     <td>11-22-3333</td>
                     <td>35690000</td>
                     <td>email@email.com.br</td>
+                    <td>Professor</td>
                 </tr>
                
             </tbody>
