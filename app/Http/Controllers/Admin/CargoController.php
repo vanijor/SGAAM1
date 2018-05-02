@@ -8,15 +8,17 @@ use App\Http\Controllers\Controller;
 
 class CargoController extends Controller
 {
+    protected $fillable = ['nome'];
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.cargo.index');
-    }
+    {   
+        $cargos = Cargo::all();
+        return view('admin.cargo.index', compact('cargos'));
+    }    
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +27,7 @@ class CargoController extends Controller
      */
     public function create()
     {
-        //
+      
     }
 
     /**

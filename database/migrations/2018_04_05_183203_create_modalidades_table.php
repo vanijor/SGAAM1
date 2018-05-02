@@ -19,6 +19,7 @@ class CreateModalidadesTable extends Migration
             $table->integer('qt_aulasem');
             $table->integer('qt_hraula');
             $table->integer('id_professor')->references('id')->on('professors')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

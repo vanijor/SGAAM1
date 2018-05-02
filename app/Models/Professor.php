@@ -6,10 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Professor extends Model
 {
-    public function consultar()
-    {
-        DB::beginTransaction();
-
-        
-    }
+    
 }

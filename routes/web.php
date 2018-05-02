@@ -1,5 +1,8 @@
 <?php
 $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'],function(){
+    $this->post('cargo/add', 'CargoController@addcargo')->name('cargo.addcargo');
+    $this->get('cargo/add', 'CargoController@add')->name('cargo.add');
+
     $this->get('cargo', 'CargoController@index')->name('admin.cargo');
     $this->get('funcionario', 'FuncionarioController@index')->name('admin.funcionario');
     $this->get('plano', 'PlanoController@index')->name('admin.plano');
