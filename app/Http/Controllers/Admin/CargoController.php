@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Cargo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StringValidationFormRequest;
 
 class CargoController extends Controller
 {
@@ -20,69 +21,13 @@ class CargoController extends Controller
         return view('admin.cargo.index', compact('cargos'));
     }    
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function add()
     {
-      
+        return view('admin.cargo.add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function addcargo(StringValidationFormRequest $request, Cargo $cargo)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cargo $cargo)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cargo $cargo)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Cargo $cargo)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Cargo $cargo)
-    {
-        //
+        $cargo->add($request->cargo);
     }
 }

@@ -3,31 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Cargo extends Model
 {
-    public function addcargo($cargos)
+   public function add($cargo) : Array
     {
-        DB::beginTransaction();
+        $this->nome = $cargo;
+        $add = $this->save();
 
-        $addcargos = $this->save();
-
-        $addcargo = Cargo::create([
-            'nome' => $cargos,
-        ]);
-
-        if ($addcargos){
-            DB::commit();
-            return [
+        if ($add)
+            return[
                 'success' => true,
-                'message' => 'Sucesso ao Adicionar Cargo!'
+                'message' => 'Cargo Adicionado com Sucesso!'
             ];
-        } else {
-            DB::rollback();
-            return [
-                'success' => false,
-                'message' => 'Falha ao Adicionar Cargo!'
-            ];
-        }
+        
+        return[
+            'success' => false,
+            'message' => 'Erro ao Adicionar o Cargo'
+        ];
     }
 }
