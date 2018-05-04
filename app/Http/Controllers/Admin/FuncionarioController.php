@@ -8,79 +8,79 @@ use App\Http\Controllers\Controller;
 
 class FuncionarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
-    {
-        return view('admin.funcionario.index');
+    {   
+        $funcionarios  = Funcionario::all();
+        return view('admin.funcionario.index', compact('funcionarios','cargos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function editar($id = null)
     {
-        //
+        if (is_null($id)) {
+            $action = '/admin/funcionario/inserir';
+            $nome = null;
+            $rg = null;
+            $cpf = null;
+            $cep = null;
+            $rua = null;
+            $numero = null;
+            $bairro = null;
+            $cidade = null;
+            $estado = null;
+            $nascimento = null;
+            $telefone = null;
+            $email = null;
+            $cargo = null;
+            $user = null;
+            $admissao = null;
+            $demissao = null;
+        } else {
+            $action = '/admin/funcionario/alterar/' . $id;
+            $funcionario = Funcionario::find($id);
+            $nome = $funcionario->nome;
+            $rg = $funcionario->rg;
+            $cpf = $funcionario->cpf;
+            $cep = $funcionario->cep;
+            $rua = $funcionario->rua;
+            $numero = $funcionario->numero;
+            $bairro = $funcionario->bairro;
+            $cidade = $funcionario->cidade;
+            $estado = $funcionario->estado;
+            $nascimento = $funcionario->dt_nascimento;
+            $telefone = $funcionario->telefone;
+            $email = $funcionario->email;
+            $cargo = $funcionario->id_cargo;
+            $user = $funcionario->id_user;
+            $admissao = $funcionario->dt_admissao;
+            $demissao = $funcionario->dt_demissao;
+        }
+        return view('admin.cargo.editar', compact('id', 'action', 'nome','rg','cpf','cep','rua','numero','bairro','cidade','estado','dt_nascimento','telefone','email','cargo'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function inserir(Request $request, Cargo $funcionario)
     {
-        //
+        $funcionario->inserir($request->funcionario);
+        if ($funcionario['success'])
+        return redirect()
+                    ->route('admin.funcionario')
+                    ->with('success', $funcionario['message']);
+    
+        return redirect()
+                    ->route('admin.funcionario')
+                    ->with('error', $funcionario['message']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Funcionario  $funcionario
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Funcionario $funcionario)
+    public function alterar(Request $request, $id)
     {
-        //
+        Funcionario::find($id)->update($request->all());
+        return redirect()
+                    ->route('admin.funcionario');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Funcionario  $funcionario
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Funcionario $funcionario)
+    public function excluir($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Funcionario  $funcionario
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Funcionario $funcionario)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Funcionario  $funcionario
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Funcionario $funcionario)
-    {
-        //
+        Funcionario::destroy($id);
+        return redirect()
+                    ->route('admin.funcionario');
     }
 }

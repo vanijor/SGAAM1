@@ -9,25 +9,50 @@ use App\Http\Requests\StringValidationFormRequest;
 
 class CargoController extends Controller
 {
-    protected $fillable = ['nome'];
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {   
         $cargos = Cargo::all();
         return view('admin.cargo.index', compact('cargos'));
     }    
 
-    public function add()
+    public function editar($id = null)
     {
-        return view('admin.cargo.add');
+        if (is_null($id)) {
+            $action = 'inserir';
+            $nome = null;
+        } else {
+            $action = '/admin/cargo/alterar/' . $id;
+            $cargo = Cargo::find($id);
+            $nome = $cargo->nome;
+        }
+        return view('admin.cargo.editar', compact('id', 'action', 'nome'));
     }
 
-    public function addcargo(StringValidationFormRequest $request, Cargo $cargo)
+    public function inserir(StringValidationFormRequest $request, Cargo $cargo)
     {
-        $cargo->add($request->cargo);
+        $cargo->inserir($request->cargo);
+        if ($cargo['success'])
+        return redirect()
+                    ->route('admin.cargo')
+                    ->with('success', $cargo['message']);
+    
+        return redirect()
+                    ->route('admin.cargo')
+                    ->with('error', $cargo['message']);
+    }
+
+    public function alterar(StringValidationFormRequest $request, $id)
+    {
+       
+        Cargo::find($id)->update($request->cargo);
+        return redirect()
+                    ->route('admin.cargo');
+    }
+
+    public function excluir($id)
+    {
+        Cargo::destroy($id);
+        return redirect()
+                    ->route('admin.cargo');
     }
 }
