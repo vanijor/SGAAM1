@@ -8,7 +8,12 @@ use Carbon\Carbon;
 
 class Funcionario extends Model
 {
-    protected $fillable = ['nome','rg','cpf','cep','rua','numero','bairro','cidade','estado','dt_nascimento','telefone','email'];
+    protected $fillable = ['nome','rg','cpf',
+                           'cep','rua','numero',
+                           'bairro','cidade','estado',
+                           'nascimento','telefone',
+                           'email','cargo', 'user', 'admissao',
+                           'demissao'];
     
     public function typeUser($type = null)
     {
@@ -47,8 +52,42 @@ class Funcionario extends Model
     }
     
     public function inserir($funcionario) : Array
-    {
-        $this->nome = $funcionario;
+    {   
+        dd($funcionario->nome);
+        $this->rg = $funcionario;
+        $this->cpf = $funcionario;
+        $this->cep = $funcionario;
+        $this->rua = $funcionario;
+        $this->numero = $funcionario;
+        $this->bairro = $funcionario;
+        $this->cidade = $funcionario;
+        $this->estado = $funcionario;
+        $this->dt_nascimento = $funcionario;
+        $this->telefone = $funcionario;
+        $this->email = $funcionario;
+        $this->id_cargo = $funcionario;
+        $this->id_user = $funcionario;
+        $this->dt_admissao = $funcionario;
+        $this->dt_demissao = $funcionario;
+
+        $add = ['nome'            => $this->nome,
+                'rg'              => $this->rg,
+                'cpf'             => $cpf,
+                'cep'             => $cep,
+                'cep'             => $cep,
+                'rua'             => $rua,
+                'numero'          => $numero,
+                'bairro'          => $bairro,
+                'cidade'          => $cidade,
+                'estado'          => $estado,
+                'dt_nascimento'   => $nascimento,
+                'telefone'        => $telefone,
+                'email'           => $email,
+                'id_cargo'        => $cargo,
+                'id_user'         => $user,
+                'dt_admissao'     => $admissao,
+                'dt_demissao'     => $demissao,
+                ];
         $add = $this->save();
 
         if ($add)

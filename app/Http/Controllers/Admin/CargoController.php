@@ -6,6 +6,7 @@ use App\Models\Cargo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StringValidationFormRequest;
+Use DB;
 
 class CargoController extends Controller
 {
@@ -43,8 +44,10 @@ class CargoController extends Controller
 
     public function alterar(StringValidationFormRequest $request, $id)
     {
-       
-        Cargo::find($id)->update($request->cargo);
+        $cargo = Cargo::find($id);
+        $cargo->nome = $request->cargo;
+        $cargo->save();
+        
         return redirect()
                     ->route('admin.cargo');
     }

@@ -17,7 +17,7 @@ class FuncionarioController extends Controller
     public function editar($id = null)
     {
         if (is_null($id)) {
-            $action = '/admin/funcionario/inserir';
+            $action = 'inserir';
             $nome = null;
             $rg = null;
             $cpf = null;
@@ -54,12 +54,19 @@ class FuncionarioController extends Controller
             $admissao = $funcionario->dt_admissao;
             $demissao = $funcionario->dt_demissao;
         }
-        return view('admin.cargo.editar', compact('id', 'action', 'nome','rg','cpf','cep','rua','numero','bairro','cidade','estado','dt_nascimento','telefone','email','cargo'));
+        return view('admin.funcionario.editar', 
+                                    compact('id', 'action', 
+                                            'nome','rg','cpf',
+                                            'cep','rua','numero',
+                                            'bairro','cidade','estado',
+                                            'nascimento','telefone',
+                                            'email','cargo', 'user', 'admissao',
+                                            'demissao'));
     }
 
-    public function inserir(Request $request, Cargo $funcionario)
+    public function inserir(Request $request, Funcionario $funcionario)
     {
-        $funcionario->inserir($request->funcionario);
+        $funcionario->inserir($request->all());
         if ($funcionario['success'])
         return redirect()
                     ->route('admin.funcionario')
@@ -72,7 +79,11 @@ class FuncionarioController extends Controller
 
     public function alterar(Request $request, $id)
     {
-        Funcionario::find($id)->update($request->all());
+        dd($request->all());
+        $funcionario = Funcionario::find($id);
+        $funcionario->nome = $request->cargo;
+        $funcionario->save();
+
         return redirect()
                     ->route('admin.funcionario');
     }

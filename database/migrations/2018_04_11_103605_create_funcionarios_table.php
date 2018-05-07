@@ -29,8 +29,8 @@ class CreateFuncionariosTable extends Migration
             $table->string('email');
             $table->integer('id_cargo')->references('id')->on('cargos')->onDelete('cascade');
             $table->integer('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->dateTime('dt_admissao');
-            $table->dateTime('dt_demissao');
+            $table->date('dt_admissao');
+            $table->date('dt_demissao');
             $table->timestamps();
         });
     }
