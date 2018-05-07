@@ -24,12 +24,12 @@ class Cargo extends Model
             'message' => 'Erro ao Adicionar o Cargo'
         ];
     }
-    public function editar($cargo, $id) : Array
-    {
+    public function editar($cargo) : Array
+    {   
         $this->nome = $cargo;
-        $add = $this->save();
+        $edit = $this->save();
 
-        if ($add)
+        if ($edit)
             return[
                 'success' => true,
                 'message' => 'Cargo Editado com Sucesso!'

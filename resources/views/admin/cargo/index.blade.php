@@ -18,15 +18,15 @@
             <i class="fa fa-plus"></i>
         </a>
     </div>
-    <div class="box-body table-bordered table-hover table-responsive no-padding">
+    <div class="box-body">
         @include('admin.includes.alerts')
-        <table class="table table-hover">
+        <table class="table table-bordered table-hover table-responsive">
             {!! csrf_field() !!}
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
-                    <th class="text-center"><i class="fa fa-cog"></i> Funções</th>
+                    <th class="text-center"><i class="fa fa-cog"></i> Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +42,7 @@
                 @endforeach
             </tbody>
         </table>
+        {!! $cargos->links() !!}
     </div>
 </div>
 

@@ -25,7 +25,6 @@
     </div>
     <div class="box-body">
         @include('admin.includes.alerts')
-        <p>{{ $action }}</p>
         <form method="POST" action="{{ $action }}">
             {!! csrf_field() !!}
             <div class="form-group">

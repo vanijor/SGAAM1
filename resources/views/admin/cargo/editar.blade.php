@@ -27,14 +27,18 @@
         @include('admin.includes.alerts')
         <form method="POST" action="{{ $action }}">
             {!! csrf_field() !!}
-            <div class="form-group">
-                <label for="nome">Nome</label>
-                <input type="text" class="form-control" name="cargo" id="nome" value="{{ $nome }}">
-            </div>
             @if (isset($id))
-					<input type="submit" class="btn btn-primary" value="Editar">
-			@else
-					<input type="submit" class="btn btn-primary" value="Adicionar">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" name="cargo" id="nome" value="{{ $nome }}">
+                </div>
+				<input type="submit" class="btn btn-primary" value="Editar">
+            @else
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" name="cargo" id="nome" value="{{ old('cargo') }}">
+                </div>
+				<input type="submit" class="btn btn-primary" value="Adicionar">
 			@endif
         </form>        
     </div>

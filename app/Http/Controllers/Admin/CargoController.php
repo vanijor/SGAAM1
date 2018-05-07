@@ -6,20 +6,22 @@ use App\Models\Cargo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StringValidationFormRequest;
-Use DB;
 
 class CargoController extends Controller
 {
+    private $pages = 3; 
+
     public function index()
     {   
         $cargos = Cargo::all();
+        $cargos = Cargo::paginate($this->pages);
         return view('admin.cargo.index', compact('cargos'));
     }    
 
     public function editar($id = null)
     {
         if (is_null($id)) {
-            $action = 'inserir';
+            $action = '/admin/cargo/inserir';
             $nome = null;
         } else {
             $action = '/admin/cargo/alterar/' . $id;
@@ -30,26 +32,32 @@ class CargoController extends Controller
     }
 
     public function inserir(StringValidationFormRequest $request, Cargo $cargo)
-    {
-        $cargo->inserir($request->cargo);
-        if ($cargo['success'])
+    {        
+        $response = $cargo->inserir($request->cargo);
+        
+        if ($response['success'])
         return redirect()
                     ->route('admin.cargo')
-                    ->with('success', $cargo['message']);
+                    ->with('success', $response['message']);
     
         return redirect()
                     ->route('admin.cargo')
-                    ->with('error', $cargo['message']);
+                    ->with('error', $response['message']);
     }
 
     public function alterar(StringValidationFormRequest $request, $id)
     {
         $cargo = Cargo::find($id);
-        $cargo->nome = $request->cargo;
-        $cargo->save();
+        $response = $cargo->editar($request->cargo);
         
+        if ($response['success'])
         return redirect()
-                    ->route('admin.cargo');
+                    ->route('admin.cargo')
+                    ->with('success', $response['message']);
+    
+        return redirect()
+                    ->route('admin.cargo')
+                    ->with('error', $response['message']);
     }
 
     public function excluir($id)
