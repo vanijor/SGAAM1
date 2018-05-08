@@ -41,7 +41,7 @@ class Funcionario extends Model
         return $types[$type];
     }
 
-    public function getDateAttibute($value)
+    public function getDateAttribute($value)
     {
         Carbon::parse($value)->format('d/m/Y');
     }

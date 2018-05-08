@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FuncionarioValidationFormRequest;
 
 class FuncionarioController extends Controller
 {
@@ -64,7 +65,7 @@ class FuncionarioController extends Controller
                                             'demissao'));
     }
 
-    public function inserir(Request $request, Funcionario $funcionario)
+    public function inserir(FuncionarioValidationFormRequest $request, Funcionario $funcionario)
     {
         $response = $funcionario->inserir($request->all());
 
@@ -78,7 +79,7 @@ class FuncionarioController extends Controller
                     ->with('error', $response['message']);
     }
 
-    public function alterar(Request $request, $id)
+    public function alterar(FuncionarioValidationFormRequest $request, $id)
     {
         $funcionario = Funcionario::find($id);
         $response = $funcionario->editar($request->all());
