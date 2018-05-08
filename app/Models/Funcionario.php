@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Cargo;
 use Carbon\Carbon;
+use App\User;
 
 class Funcionario extends Model
 {
@@ -17,28 +18,18 @@ class Funcionario extends Model
     
     public function typeUser($type = null)
     {
-        $types = [
-                '1' => 'Admin',
-                '2' => 'Professor',
-                '3' => 'Balconista',
-        ];
-        if (!$type)
-            return $types;
-        
-        return $types[$type];
+        $user = User::find($type);
+        $nome = $user->name;
+
+        return $nome;
     }
 
-    public function typeCargo($type = null)
+    public function typeCargo($type)
     {
-        $types = [
-                '1' => 'Professor',
-                '2' => 'Balconista',
-                '3' => 'Faxineiro',
-        ];
-        if (!$type)
-            return $types;
+        $cargo = Cargo::find($type);
+        $nome = $cargo->nome;
         
-        return $types[$type];
+        return $nome;
     }
 
     public function getDateAttribute($value)

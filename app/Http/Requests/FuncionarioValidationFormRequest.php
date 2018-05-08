@@ -24,22 +24,21 @@ class FuncionarioValidationFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome'       => 'required|alpha',
-            'rg'         => 'required|numeric|min:9|max:9',
-            'cpf'        => 'required|numeric|min:11|max:11',
-            'cep'        => 'required|numeric|min:8|max:8',
-            'rua'        => 'required|alpha',
+            'nome'       => 'required|string',
+            'rg'         => 'required|numeric',
+            'cpf'        => 'required|numeric',
+            'cep'        => 'required|numeric',
+            'rua'        => 'required|string',
             'numero'     => 'required|numeric',
-            'bairro'     => 'required|alpha',
-            'cidade'     => 'required|alpha',
-            'estado'     => 'required|alpha|min:2|max:2',
+            'bairro'     => 'required|string',
+            'cidade'     => 'required|string',
+            'estado'     => 'required|alpha',
             'nascimento' => 'required|date',
             'telefone'   => 'required|numeric',
             'email'      => 'required|email',
             'cargo'      => 'required',
             'user'       => 'required',
             'admissao'   => 'required|date',
-            'demissao'   => 'required|date',
         ];
     }
 }

@@ -27,7 +27,7 @@
         @include('admin.includes.alerts')
         <form method="POST" action="{{ $action }}">
             {!! csrf_field() !!}
-            <div class="form-group">
+            <div class="form-group has-warning">
                 <label for="nome">Nome</label>
                 <input type="text" class="form-control" name="nome" id="nome" value="{{ $nome }}">
             </div>
@@ -78,6 +78,15 @@
             <div class="form-group">//mudar para list
                     <label for="cargo">Cargo</label>
                     <input type="text" class="form-control" name="cargo" id="cargo" value="{{ $cargo }}">
+            </div>
+            <div class="form-group">
+                <label>Cargo</label>
+				<select name="type" class="form-control">
+					<option>--Selecione--</option>
+					@foreach ($types as $key => $type)
+						<option value="{{$key}}">{{ $type }}</option>
+					@endforeach
+				</select>
             </div>
             <div class="form-group">
                     <label for="user">Usuário</label>
