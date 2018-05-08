@@ -15,7 +15,13 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     //PLANO
     Route::get('plano', 'PlanoController@index')->name('admin.plano');
     Route::get('pagamento', 'PagamentoController@index')->name('admin.pagamento');
+    //MODALIDADE
+    Route::post('modalidade/alterar/{id}', 'ModalidadeController@alterar')->name('modalidade.alterar');
+    Route::post('modalidade/inserir', 'ModalidadeController@inserir')->name('modalidade.inserir');
+    Route::get('modalidade/excluir/{id}', 'ModalidadeController@excluir')->name('modalidade.excluir');
+    Route::get('modalidade/editar/{id?}', 'ModalidadeController@editar')->name('modalidade.editar');
     Route::get('modalidade', 'ModalidadeController@index')->name('admin.modalidade');
+    //ALUNO
     Route::get('aluno', 'AlunoController@index')->name('admin.aluno');
     Route::get('professor', 'ProfessorController@index')->name('admin.professor');
     Route::get('/', 'AdminController@index')->name('admin.home');

@@ -8,79 +8,67 @@ use App\Http\Controllers\Controller;
 
 class ModalidadeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $pages = 3;
+
     public function index()
     {
-        return view('admin.modalidade.index');
+        $modalidades = Modalidade::all();
+        $modalidades = Modalidade::paginate($this->pages);
+        return view('admin.modalidade.index', compact('modalidades'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function editar($id = null)
     {
-        //
+        if (is_null($id)) {
+            $action = '/admin/modalidade/inserir';
+            $modalidade = null;
+            $semanal = null;
+            $horas = null;
+            $professor = null;
+        } else {
+            $action = '/admin/modalidade/alterar/' . $id;
+            $modalidades = Modalidade::find($id);
+            $modalidade = $modalidades->nome;
+            $semanal = $modalidades->qt_aulasem;
+            $horas = $modalidades->qt_hraula;
+            $professor = $modalidades->id_professor;
+        }
+        return view('admin.modalidade.editar', compact('id', 'action', 'modalidade', 'semanal', 'horas', 'professor'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function inserir(Request $request, Modalidade $modalidade)
+    {        
+        $response = $modalidade->inserir($request->all());
+        
+        if ($response['success'])
+        return redirect()
+                    ->route('admin.modalidade')
+                    ->with('success', $response['message']);
+    
+        return redirect()
+                    ->route('admin.modalidade')
+                    ->with('error', $response['message']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Modalidade  $modalidade
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Modalidade $modalidade)
+    public function alterar(Request $request, $id)
     {
-        //
+        $modalidade = Modalidade::find($id);
+        $response = $modalidade->editar($request->all());
+        
+        if ($response['success'])
+        return redirect()
+                    ->route('admin.modalidade')
+                    ->with('success', $response['message']);
+    
+        return redirect()
+                    ->route('admin.modalidade')
+                    ->with('error', $response['message']);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Modalidade  $modalidade
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Modalidade $modalidade)
+    public function excluir($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Modalidade  $modalidade
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Modalidade $modalidade)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Modalidade  $modalidade
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Modalidade $modalidade)
-    {
-        //
+        Modalidade::destroy($id);
+        return redirect()
+                    ->route('admin.modalidade');
     }
 }

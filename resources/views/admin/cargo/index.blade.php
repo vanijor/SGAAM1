@@ -14,9 +14,9 @@
 @section('content')
 <div class="box">
     <div class="box-header">
-        <button href="{{ route('cargo.editar')}}" class="btn btn-primary">
+        <a href="{{ route('cargo.editar')}}" class="btn btn-primary">
             <i class="fa fa-plus"></i>
-        </button>
+        </a>
     </div>
     <div class="box-body">
         @include('admin.includes.alerts')
