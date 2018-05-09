@@ -24,7 +24,7 @@ class StringValidationFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'cargo'      => 'required|alpha',
+            'cargo' => 'required|alpha',
         ];
     }
 }

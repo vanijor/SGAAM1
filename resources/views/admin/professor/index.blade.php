@@ -35,7 +35,7 @@
                 <tr>
                     <td>{{ $professor->id }}</td>
                     <td>{{ $professor->typeFunc($professor->id_funcionario) }}</td>
-                    <td>{{ $professor->id_modalidade }}</td>
+                    <td>{{ $professor->typeModa($professor->id_modalidade) }}</td>
                     <td class="text-center">
                         <a class="btn btn-info " href="professor/editar/{{ $professor->id }}"><i class="fa fa-edit"></i></a>
                         <a class="btn btn-danger" href="professor/excluir/{{ $professor->id }}"><i class="fa fa-trash"></i></a>
