@@ -26,6 +26,7 @@ class Funcionario extends Model
 
     public function typeCargo($type)
     {
+        
         $cargo = Cargo::find($type);
         $nome = $cargo->nome;
         
@@ -35,6 +36,11 @@ class Funcionario extends Model
     public function getDateAttribute($value)
     {
         Carbon::parse($value)->format('d/m/Y');
+    }
+
+    public function professor()
+    {
+        return $this->hasOne(Professor::class);
     }
 
     public function cargo()
