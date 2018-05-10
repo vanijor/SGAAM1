@@ -13,74 +13,103 @@ class AlunoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $pages = 5;
     public function index()
     {
-        return view('admin.aluno.index');
+        $alunos = Aluno::all();
+        $alunos = Aluno::paginate($this->pages);   
+        return view('admin.aluno.index', compact('alunos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function editar($id = null)
     {
-        //
+        if (is_null($id)) {
+            $action = '/admin/aluno/inserir';
+            $nome = null;
+            $rg = null;
+            $cpf = null;
+            $cep = null;
+            $rua = null;
+            $numero = null;
+            $bairro = null;
+            $cidade = null;
+            $estado = null;
+            $nascimento = null;
+            $telefone = null;
+            $email = null;
+            $plano = null;
+            $modalidade = null;
+        
+        } else {
+            $action = '/admin/aluno/alterar/' . $id;
+            $alunos = Aluno::find($id);
+            $nome = $alunos->nome;
+            $rg = $alunos->rg;
+            $cpf = $alunos->cpf;
+            $cep = $alunos->cep;
+            $rua = $alunos->rua;
+            $numero = $alunos->numero;
+            $bairro = $alunos->bairro;
+            $cidade = $alunos->cidade;
+            $estado = $alunos->estado;
+            $nascimento = $alunos->dt_nascimento;
+            $telefone = $alunos->telefone;
+            $email = $alunos->email;
+            $plano = $alunos->id_plano;
+            $modalidade = $alunos->id_modalidade;
+            
+        }
+        return view('admin.aluno.editar', compact(
+                                                'id',
+                                                'action',
+                                                'nome',
+                                                'rg',
+                                                'cpf',
+                                                'cep',
+                                                'rua',
+                                                'numero',
+                                                'bairro',
+                                                'cidade',
+                                                'estado',
+                                                'nascimento',
+                                                'telefone',
+                                                'email',
+                                                'plano',
+                                                'modalidade'
+                                                 ));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function inserir(Request $request, Aluno $aluno)
+    {        
+        // dd($request->all());
+        $response = $aluno->inserir($request->all());
+        
+        if ($response['success'])
+        return redirect()
+                    ->route('admin.aluno')
+                    ->with('success', $response['message']);
+    
+        return redirect()
+                    ->route('admin.aluno')
+                    ->with('error', $response['message']);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Aluno  $aluno
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Aluno $aluno)
+    public function alterar(Request $request, $id)
     {
-        //
+        $alunos = Aluno::find($id);
+        $response = $alunos->editar($request->all());
+        
+        if ($response['success'])
+        return redirect()
+                    ->route('admin.aluno')
+                    ->with('success', $response['message']);
+    
+        return redirect()
+                    ->route('admin.aluno')
+                    ->with('error', $response['message']);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Aluno  $aluno
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Aluno $aluno)
+    public function excluir($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Aluno  $aluno
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Aluno $aluno)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Aluno  $aluno
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Aluno $aluno)
-    {
-        //
+        Aluno::destroy($id);
+        return redirect()
+                    ->route('admin.aluno');
     }
 }

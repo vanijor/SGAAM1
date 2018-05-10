@@ -161,7 +161,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         JeroenNoten\LaravelAdminLte\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Orangehill\Iseed\IseedServiceProvider::class
+        Orangehill\Iseed\IseedServiceProvider::class,
+        ValidadorCpf\CpfServiceProvider::class,
+        LaravelLegends\PtBrValidator\ValidatorProvider::class
 
     ],
 
