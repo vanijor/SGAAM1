@@ -40,7 +40,7 @@ class Funcionario extends Model
 
     public function professor()
     {
-        return $this->hasOne(Professor::class);
+        return $this->hasOne(Professor  ::class);
     }
 
     public function cargo()
@@ -49,7 +49,8 @@ class Funcionario extends Model
     }
     
     public function inserir($funcionario) : Array
-    {   
+    {  
+        
         $this->nome = $funcionario['nome'];
         $this->rg = $funcionario['rg'];
         $this->cpf = $funcionario['cpf'];

@@ -54,7 +54,7 @@ class Professor extends Model
     {   
         $this->id_funcionario = $professores['nome'];
         $this->id_modalidade = $professores['modalidade'];
-        $add = $this->save();
+        $edit = $this->save();
 
         if ($edit)
             return[

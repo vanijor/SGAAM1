@@ -40,11 +40,11 @@
             @else
                 <div class="form-group">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" name="nome" id="nome" value="{{ $nome }}">
+                    <input type="text" class="form-control" name="nome" id="nome" value="{{ old('nome') }}">
                 </div>
                 <div class="form-group">
                     <label for="modalidade">Modalidade</label>
-                    <input type="text" class="form-control" name="modalidade" id="modalidade" value="{{ $modalidade }}">
+                    <input type="text" class="form-control" name="modalidade" id="modalidade" value="{{ old('modalidade') }}">
                 </div>
 				<input type="submit" class="btn btn-primary" value="Adicionar">
 			@endif

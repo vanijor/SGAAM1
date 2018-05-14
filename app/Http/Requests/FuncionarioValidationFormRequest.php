@@ -26,7 +26,7 @@ class FuncionarioValidationFormRequest extends FormRequest
         return [
             'nome'       => 'required|string',
             'rg'         => 'required|numeric',
-            'cpf'        => 'required|numeric',
+            'cpf'        => 'required|numeric|cpf',
             'cep'        => 'required|numeric',
             'rua'        => 'required|string',
             'numero'     => 'required|numeric',
