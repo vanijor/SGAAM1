@@ -13,74 +13,79 @@ class PagamentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $pages = 5;
     public function index()
     {
-        return view('admin.pagamento.index');
+        $pagamentos = Pagamento::all();
+        $pagamentos = Pagamento::paginate($this->pages);   
+        return view('admin.pagamento.index', compact('pagamentos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function editar($id = null)
     {
-        //
-    }
+        if (is_null($id)) {
+            $action = '/admin/pagamento/inserir';
+            $nome = null;
+            $mes_referente = null;
+            $dt_vencimento = null;
+            $vl_mensalidade = null;
+            $id_aluno = null;
+            $id_modalidade = null;
+        
+        } else {
+            $action = '/admin/pagamento/alterar/' . $id;
+            $pagamentos = Pagamento::find($id);
+            $nome = $pagamentos->nome;
+            $mes_referente = $pagamentos->mes_referente;
+            $dt_vencimento = $pagamentos->dt_vencimento;
+            $vl_mensalidade = $pagamentos->vl_mensalidade;
+            $id_aluno = $pagamentos->id_aluno;
+            $id_modalidade = $pagamentos->id_modalidade;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        }
+        return view('admin.pagamento.editar', compact(
+                                                'id',
+                                                'action',
+                                                'nome',
+                                                'mes_referente',
+                                                'dt_vencimento',
+                                                'vl_mensalidade',
+                                                'id_aluno',
+                                                'id_modalidade'
+                                                 ));
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pagamento  $pagamento
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pagamento $pagamento)
-    {
-        //
+    public function inserir(Request $request, Pagamento $pagamento)
+    {        
+        // dd($request->all());
+        $response = $pagamento->inserir($request->all());
+        
+        if ($response['success'])
+        return redirect()
+                    ->route('admin.pagamento')
+                    ->with('success', $response['message']);
+    
+        return redirect()
+                    ->route('admin.pagamento')
+                    ->with('error', $response['message']);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pagamento  $pagamento
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pagamento $pagamento)
+    public function alterar(Request $request, $id)
     {
-        //
+        $pagamentos = Pagamento::find($id);
+        $response = $pagamentos->editar($request->all());
+        
+        if ($response['success'])
+        return redirect()
+                    ->route('admin.pagamento')
+                    ->with('success', $response['message']);
+    
+        return redirect()
+                    ->route('admin.pagamento')
+                    ->with('error', $response['message']);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pagamento  $pagamento
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Pagamento $pagamento)
+    public function excluir($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pagamento  $pagamento
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pagamento $pagamento)
-    {
-        //
+        Pagamento::destroy($id);
+        return redirect()
+                    ->route('admin.pagamento');
     }
 }

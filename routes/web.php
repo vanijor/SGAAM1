@@ -33,6 +33,12 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     Route::get('professor/excluir/{id}', 'ProfessorController@excluir')->name('professor.excluir');
     Route::get('professor/editar/{id?}', 'ProfessorController@editar')->name('professor.editar');
     Route::get('professor', 'ProfessorController@index')->name('admin.professor');
+    //PAGAMENTO
+    Route::post('pagamento/alterar/{id}', 'PagamentoController@alterar')->name('pagamento.alterar');
+    Route::post('pagamento/inserir', 'PagamentoController@inserir')->name('pagamento.inserir');
+    Route::get('pagamento/excluir/{id}', 'PagamentoController@excluir')->name('pagamento.excluir');
+    Route::get('pagamento/editar/{id?}', 'PagamentoController@editar')->name('pagamento.editar');
+    Route::get('pagamento', 'PagamentoController@index')->name('admin.pagamento');
     // HOME
     Route::get('/', 'AdminController@index')->name('admin.home');
 });
