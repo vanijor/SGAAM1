@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Pagamento;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Aluno;
 
 class PagamentoController extends Controller
 {
@@ -30,7 +31,7 @@ class PagamentoController extends Controller
             $dt_vencimento = null;
             $vl_mensalidade = null;
             $id_aluno = null;
-            $id_modalidade = null;
+            $modalidade = null;
         
         } else {
             $action = '/admin/pagamento/alterar/' . $id;
@@ -40,7 +41,7 @@ class PagamentoController extends Controller
             $dt_vencimento = $pagamentos->dt_vencimento;
             $vl_mensalidade = $pagamentos->vl_mensalidade;
             $id_aluno = $pagamentos->id_aluno;
-            $id_modalidade = $pagamentos->id_modalidade;
+            $modalidade = $pagamentos->id_modalidade;
 
         }
         return view('admin.pagamento.editar', compact(
@@ -51,12 +52,11 @@ class PagamentoController extends Controller
                                                 'dt_vencimento',
                                                 'vl_mensalidade',
                                                 'id_aluno',
-                                                'id_modalidade'
+                                                'modalidade'
                                                  ));
     }
     public function inserir(Request $request, Pagamento $pagamento)
     {        
-        // dd($request->all());
         $response = $pagamento->inserir($request->all());
         
         if ($response['success'])

@@ -16,8 +16,8 @@ class CreateAlunosTable extends Migration
         Schema::create('alunos', function (Blueprint $table) {
             $table->increments ('id');
             $table->string('nome');
-            $table->integer('cpf')->unique();
-            $table->integer('rg');
+            $table->bigInteger('cpf')->unique();
+            $table->bigInteger('rg');
             $table->integer('cep');
             $table->string('rua');
             $table->integer('numero');
@@ -25,7 +25,7 @@ class CreateAlunosTable extends Migration
             $table->string('cidade');
             $table->string('estado');
             $table->date('dt_nascimento');
-            $table->integer('telefone');
+            $table->bigInteger('telefone');
             $table->string('email');
             $table->integer('id_plano')->references('id')->on('planos')->onDelete('cascade');
             $table->integer('id_modalidade')->references('id')->on('modalidades')->onDelete('cascade');

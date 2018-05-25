@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Modalidade;
+use Symfony\Component\Console\Input\Input;
 
 class Aluno extends Model
 {   
@@ -12,7 +13,8 @@ class Aluno extends Model
         return $this->hasMany(Modalidade::class);
     }
 
-    protected $fillable = [ 'nome',
+    protected $fillable = [ 'id',
+                            'nome',
                             'cpf',
                             'rg',
                             'cep',
@@ -30,6 +32,7 @@ class Aluno extends Model
 
     public function inserir($alunos) : Array
     {
+        $this->id = $alunos('id');
         $this->nome = $alunos['nome'];
         $this->cpf = $alunos['cpf'];
         $this->rg = $alunos['rg'];

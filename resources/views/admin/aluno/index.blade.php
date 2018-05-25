@@ -39,7 +39,6 @@
         <tbody>
             @foreach ($alunos as $aluno)
                 <tr>
-                    <td>{{ $aluno->matricula }}</td>
                     <td>{{ $aluno->nome }}</td>
                     <td>{{ $aluno->rg }}</td>
                     <td>{{ $aluno->cpf }}</td>

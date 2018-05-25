@@ -28,59 +28,63 @@
         <form method="POST" action="{{ $action }}">
             {!! csrf_field() !!}
             @if (isset($id))
-                <div class="form-group">
+                <div class="form-group col-xs-4">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" name="nome"
-                     id="nome" value="{{ $nome }}">
+                    <select name="nome" id="nome">
+                        <option value="{{ $nome }}">Selecione</option>
+                    </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-xs-4">
                     <label for="mes_referente">Mês referenteF</label>
                     <input type="text" class="form-control" name="mes_referente"
                      id="mes_referente" value="{{ $mes_referente }}">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-xs-4">
                     <label for="dt_nascimento">Data de vencimento</label>
                     <input type="text" class="form-control" name="dt_nascimento"
                     id="dt_nascimento" value="{{ $dt_nascimento }}">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-xs-4">
                     <label for="vl_mensalidade">Valor mensalidade</label>
                     <input type="text" class="form-control" name="vl_mensalidade"
                     id="vl_mensalidade" value="{{ $vl_mensalidade }}">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-xs-4">
                     <label for="id_modalidade">Modalidade</label>
-                    <input type="text" class="form-control" name="id_modalidade"
-                    id="id_modalidade" value="{{ $id_modalidade }}">
+                    <select name="id_modalidade" id="id_modalidade" class="form-control">
+                        <option value="{{ $modalidade }}">Selecione</option>
+                    </select>
                 </div>
                 
 				<input type="submit" class="btn btn-primary" value="Editar">
 
             @else
-            <div class="form-group">
+                <div class="form-group col-xs-4">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" name="nome"
-                     id="nome" value="{{ $nome }}">
+                    <select name="nome" id="nome" class="form-control">
+                        <option value="{{ $nome }}">Selecione</option>
+                    </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-xs-4">
                     <label for="mes_referente">Mês referente</label>
-                    <input type="text" class="form-control" name="mes_referente"
+                    <input type="month" class="form-control" name="mes_referente"
                      id="mes_referente" value="{{ $mes_referente }}">
                 </div>
-                <div class="form-group">
-                    <label for="dt_nascimento">Data de vencimento</label>
-                    <input type="text" class="form-control" name="dt_nascimento"
-                    id="dt_nascimento" value="{{ $dt_nascimento }}">
+                <div class="form-group col-xs-4">
+                    <label for="dt_vencimento">Data de vencimento</label>
+                    <input type="date" class="form-control" name="dt_vencimento"
+                    id="dt_vencimento" value="{{ $dt_vencimento }}">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-xs-4">
                     <label for="vl_mensalidade">Valor mensalidade</label>
                     <input type="text" class="form-control" name="vl_mensalidade"
                     id="vl_mensalidade" value="{{ $vl_mensalidade }}">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-xs-4">
                     <label for="id_modalidade">Modalidade</label>
-                    <input type="text" class="form-control" name="id_modalidade"
-                    id="id_modalidade" value="{{ $id_modalidade }}">
+                    <select name="id_modalidade" id="id_modalidade" class="form-control">
+                        <option value="{{ $modalidade }}">Selecione</option>
+                    </select>
                 </div>
 
 				<input type="submit" class="btn btn-primary" value="Adicionar">
