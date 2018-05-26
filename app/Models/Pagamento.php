@@ -13,8 +13,14 @@ class Pagamento extends Model
         return $this->hasMany(Pagamento::class);
     }
 
-    public function aluno(){
+    public function aluno()
+    {
         return $this->hasOne(Aluno::class);
+    }
+
+    public function alunoToPagamento()
+    {
+        return $aluno = DB::table('alunos');
     }
 
     protected $fillable = [

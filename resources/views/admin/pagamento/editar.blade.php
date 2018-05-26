@@ -28,10 +28,13 @@
         <form method="POST" action="{{ $action }}">
             {!! csrf_field() !!}
             @if (isset($id))
-                <div class="form-group col-xs-4">
+            <div class="form-group col-xs-4">
                     <label for="nome">Nome</label>
-                    <select name="nome" id="nome">
-                        <option value="{{ $nome }}">Selecione</option>
+                    <select name="nome" id="nome" class="form-control">
+                        <option>Selecione</option>
+                        @foreach
+                        <option value="{{ alunoToPagamento() }}"></option>
+                        @endfor
                     </select>
                 </div>
                 <div class="form-group col-xs-4">
@@ -62,7 +65,10 @@
                 <div class="form-group col-xs-4">
                     <label for="nome">Nome</label>
                     <select name="nome" id="nome" class="form-control">
-                        <option value="{{ $nome }}">Selecione</option>
+                        <option>Selecione</option>
+                        @foreach
+                        <option value="{{ alunoToPagamento }}"></option>
+                        @endfor
                     </select>
                 </div>
                 <div class="form-group col-xs-4">
