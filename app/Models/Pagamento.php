@@ -26,20 +26,26 @@ class Pagamento extends Model
         return $this->hasOne(Aluno::class);
     }
 
-    public function typeAluno($type = null)
-    {
-        $aluno = Aluno::find($type);
-        $nome = $aluno->nome;
+    public function typeAluno($type)
+    {   
+        $alunos = Aluno::find($type);
+        if (empty($alunos)){
 
+        } else {
+        $nome = $alunos->nome;
         return $nome;
+        }
     }
 
-    public function typeModa($type = null)
-    {
+    public function typeModa($type)
+    {   
         $modalidade = Modalidade::find($type);
-        $nome = $modalidade->nome;
+        if (empty($modalidade)){
 
+        } else {
+        $nome = $modalidade->nome;
         return $nome;
+        }
     }
 
     public function inserir($pagamentos): array

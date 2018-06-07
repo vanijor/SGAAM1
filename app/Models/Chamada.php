@@ -12,8 +12,11 @@ class Chamada extends Model
     public function typeAluno($type = null)
     {
         $alunos = Aluno::find($type);
-        $nome = $alunos->nome;
+        if (empty($professor)){
 
-        return $nome;
+        } else {
+            $nome = $alunos->nome;
+            return $nome;
+        }        
     }
 }

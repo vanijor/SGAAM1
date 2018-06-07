@@ -29,12 +29,15 @@ class Professor extends Model
                             'modalidade',];
 
 
-    public function typeModa($type = null)
-    {
+    public function typeModa($type)
+    {   
         $modalidade = Modalidade::find($type);
-        $nome = $modalidade->nome;
+        if (empty($modalidade)){
 
+        } else {
+        $nome = $modalidade->nome;
         return $nome;
+        }
     }
     
     public function inserir($professores) : Array

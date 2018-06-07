@@ -22,7 +22,10 @@ class ChamadaController extends Controller
     {
         foreach ($request->aluno_id as $id) {
 
-            Chamada::create(['aluno_id' => $id, 'present' => $request->presente[$id]]);
+            Chamada::create([
+                'aluno_id' => $id, 
+                'presente' => $request->presente[$id]
+            ]);
 
         }
 

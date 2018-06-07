@@ -9,11 +9,14 @@ class Plano extends Model
     protected $fillable = ['tipo', 'forma_pagamento', 'modalidade_id'];
 
     public function typeModa($type)
-    {
+    {   
         $modalidade = Modalidade::find($type);
-        $nome = $modalidade->nome;
+        if (empty($modalidade)){
 
+        } else {
+        $nome = $modalidade->nome;
         return $nome;
+        }
     }
 
     public function inserir($planos): array

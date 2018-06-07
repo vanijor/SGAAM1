@@ -20,19 +20,26 @@ class Aluno extends Model
         return $this->hasMany(Chamada::class);
     }
 
-    public function typeModa($type = null)
-    {
+    public function typeModa($type)
+    {   
         $modalidade = Modalidade::find($type);
+        if (empty($modalidade)){
+
+        } else {
         $nome = $modalidade->nome;
-        
         return $nome;
+        }
     }
+    
     public function typePlano($type = null)
     {
         $plano = Plano::find($type);
-        $nome = $plano->tipo;
-        
-        return $nome;
+        if (empty($plano)){
+            
+        } else {
+            $nome = $plano->tipo;
+            return $nome;
+        }
     }
 
     protected $fillable = [ 'id',
