@@ -26,6 +26,12 @@
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
+                    <th>RG</th>
+                    <th>CPF</th>
+                    <th>CEP</th>
+                    <th>Data Nascimento</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
                     <th>Modalidade</th>
                     <th class="text-center"><i class="fa fa-cog"></i> Ações</th>
                 </tr>
@@ -34,8 +40,22 @@
                 @foreach ($professores as $professor)
                 <tr>
                     <td>{{ $professor->id }}</td>
-                    <td>{{ $professor->typeFunc($professor->id_funcionario) }}</td>
-                    <td>{{ $professor->typeModa($professor->id_modalidade) }}</td>
+                    <td>{{ $professor->nome }}</td>
+                    <td>{{ $professor->rg }}</td>
+                    <td>{{ $professor->cpf }}</td>
+                    <td>{{ $professor->cep }}
+                        <a href="#" data-toggle="popover" title="Endereço" data-content="
+                        {{ $professor->rua }},
+                        {{ $professor->numero }} -
+                        {{ $professor->bairro }} -
+                        {{ $professor->cidade }} /
+                        {{ $professor->estado }}" data-trigger="focus" data-placement="bottom"> <i class="fa fa-info-circle"></i>
+                        </a>
+                    </td>
+                    <td>{{ $professor->nascimento }}</td>
+                    <td>{{ $professor->telefone }}</td>
+                    <td>{{ $professor->email }}</td>
+                    <td>{{ $professor->typemoda($professor->modalidade_id) }}</td>
                     <td class="text-center">
                         <a class="btn btn-info " href="professor/editar/{{ $professor->id }}"><i class="fa fa-edit"></i></a>
                         <a class="btn btn-danger" href="professor/excluir/{{ $professor->id }}"><i class="fa fa-trash"></i></a>
@@ -47,5 +67,6 @@
         {!! $professores->links() !!}
     </div>
 </div>
+
 
 @stop

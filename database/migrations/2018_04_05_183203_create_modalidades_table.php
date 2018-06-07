@@ -14,11 +14,11 @@ class CreateModalidadesTable extends Migration
     public function up()
     {
         Schema::create('modalidades', function (Blueprint $table) {
-            $table->increments('id')->unique();
+            $table->increments('id');
             $table->string('nome');
             $table->integer('qt_aulasem');
             $table->integer('qt_hraula');
-            $table->integer('id_professor')->references('id')->on('professors')->onDelete('cascade');
+            $table->integer('professor_id')->references('id')->on('professors');
             $table->timestamps();
         });
     }

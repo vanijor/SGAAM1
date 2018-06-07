@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Aluno;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Modalidade;
+use App\Models\Plano;
 
 class AlunoController extends Controller
 {
@@ -23,6 +25,8 @@ class AlunoController extends Controller
 
     public function editar($id = null)
     {
+        $planos = Plano::all();
+        $modalidades = Modalidade::all();
         if (is_null($id)) {
             $action = '/admin/aluno/inserir';
             $nome = null;
@@ -55,8 +59,8 @@ class AlunoController extends Controller
             $nascimento = $alunos->dt_nascimento;
             $telefone = $alunos->telefone;
             $email = $alunos->email;
-            $plano = $alunos->id_plano;
-            $modalidade = $alunos->id_modalidade;
+            $plano = $alunos->plano_id;
+            $modalidade = $alunos->modalidade_id;
             
         }
         return view('admin.aluno.editar', compact(
@@ -75,12 +79,13 @@ class AlunoController extends Controller
                                                 'telefone',
                                                 'email',
                                                 'plano',
-                                                'modalidade'
+                                                'modalidade',
+                                                'modalidades',
+                                                'planos'
                                                  ));
     }
     public function inserir(Request $request, Aluno $aluno)
     {        
-        // dd($request->all());
         $response = $aluno->inserir($request->all());
         
         if ($response['success'])

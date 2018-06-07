@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Modalidade;
+use App\Models\Chamada;
+use App\Models\Plano;
 use Symfony\Component\Console\Input\Input;
 
 class Aluno extends Model
@@ -11,6 +13,26 @@ class Aluno extends Model
     public function modalidade()
     {
         return $this->hasMany(Modalidade::class);
+    }
+
+    public function chamada()
+    {
+        return $this->hasMany(Chamada::class);
+    }
+
+    public function typeModa($type = null)
+    {
+        $modalidade = Modalidade::find($type);
+        $nome = $modalidade->nome;
+        
+        return $nome;
+    }
+    public function typePlano($type = null)
+    {
+        $plano = Plano::find($type);
+        $nome = $plano->tipo;
+        
+        return $nome;
     }
 
     protected $fillable = [ 'id',
@@ -26,8 +48,8 @@ class Aluno extends Model
                             'dt_nascimento',
                             'telefone',
                             'email',
-                            'id_plano',
-                            'id_modalidade'
+                            'plano_id',
+                            'modalidade_id'
                           ];
 
     public function inserir($alunos) : Array
@@ -45,8 +67,8 @@ class Aluno extends Model
         $this->dt_nascimento = $alunos['nascimento'];
         $this->telefone = $alunos['telefone'];
         $this->email = $alunos['email'];
-        $this->id_plano = $alunos['plano'];
-        $this->id_modalidade = $alunos['modalidade'];
+        $this->plano_id = $alunos['plano'];
+        $this->modalidade_id = $alunos['modalidade'];
         $add = $this->save();
 
         if ($add)
@@ -74,8 +96,8 @@ class Aluno extends Model
         $this->dt_nascimento = $alunos['nascimento'];
         $this->telefone = $alunos['telefone'];
         $this->email = $alunos['email'];
-        $this->id_plano = $alunos['plano'];
-        $this->id_modalidade = $alunos['modalidade'];
+        $this->plano_id = $alunos['plano'];
+        $this->modalidade_id = $alunos['modalidade'];
         $$edit = $this->save();
 
         if ($edit)

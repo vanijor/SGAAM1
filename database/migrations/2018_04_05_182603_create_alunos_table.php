@@ -27,8 +27,8 @@ class CreateAlunosTable extends Migration
             $table->date('dt_nascimento');
             $table->bigInteger('telefone');
             $table->string('email');
-            $table->integer('id_plano')->references('id')->on('planos')->onDelete('cascade');
-            $table->integer('id_modalidade')->references('id')->on('modalidades')->onDelete('cascade');
+            $table->integer('plano_id')->references('id')->on('planos');
+            $table->integer('modalidade_id')->references('id')->on('modalidades');
             $table->timestamps();
         });
     }

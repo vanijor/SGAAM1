@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Modalidade;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Modalidade;
+use App\Models\Professor;
+use Illuminate\Http\Request;
 
 class ModalidadeController extends Controller
 {
@@ -19,6 +20,7 @@ class ModalidadeController extends Controller
 
     public function editar($id = null)
     {
+        $professores = Professor::all();
         if (is_null($id)) {
             $action = '/admin/modalidade/inserir';
             $modalidade = null;
@@ -31,44 +33,46 @@ class ModalidadeController extends Controller
             $modalidade = $modalidades->nome;
             $semanal = $modalidades->qt_aulasem;
             $horas = $modalidades->qt_hraula;
-            $professor = $modalidades->id_professor;
+            $professor = $modalidades->professor_id;
         }
-        return view('admin.modalidade.editar', compact('id', 'action', 'modalidade', 'semanal', 'horas', 'professor'));
+        return view('admin.modalidade.editar', compact('id', 'action', 'modalidade', 'semanal', 'horas', 'professor', 'professores'));
     }
 
     public function inserir(Request $request, Modalidade $modalidade)
-    {        
+    {
         $response = $modalidade->inserir($request->all());
-        
-        if ($response['success'])
+
+        if ($response['success']) {
+            return redirect()
+                ->route('admin.modalidade')
+                ->with('success', $response['message']);
+        }
+
         return redirect()
-                    ->route('admin.modalidade')
-                    ->with('success', $response['message']);
-    
-        return redirect()
-                    ->route('admin.modalidade')
-                    ->with('error', $response['message']);
+            ->route('admin.modalidade')
+            ->with('error', $response['message']);
     }
 
     public function alterar(Request $request, $id)
     {
         $modalidade = Modalidade::find($id);
         $response = $modalidade->editar($request->all());
-        
-        if ($response['success'])
+
+        if ($response['success']) {
+            return redirect()
+                ->route('admin.modalidade')
+                ->with('success', $response['message']);
+        }
+
         return redirect()
-                    ->route('admin.modalidade')
-                    ->with('success', $response['message']);
-    
-        return redirect()
-                    ->route('admin.modalidade')
-                    ->with('error', $response['message']);
+            ->route('admin.modalidade')
+            ->with('error', $response['message']);
     }
 
     public function excluir($id)
     {
         Modalidade::destroy($id);
         return redirect()
-                    ->route('admin.modalidade');
+            ->route('admin.modalidade');
     }
 }

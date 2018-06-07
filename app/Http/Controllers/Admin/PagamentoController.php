@@ -6,6 +6,7 @@ use App\Models\Pagamento;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Aluno;
+use App\Models\Modalidade;
 
 class PagamentoController extends Controller
 {
@@ -17,6 +18,7 @@ class PagamentoController extends Controller
     private $pages = 5;
     public function index()
     {
+        
         $pagamentos = Pagamento::all();
         $pagamentos = Pagamento::paginate($this->pages);   
         return view('admin.pagamento.index', compact('pagamentos'));
@@ -24,44 +26,47 @@ class PagamentoController extends Controller
 
     public function editar($id = null)
     {
+        $alunos = Aluno::all();
+        $modalidades = Modalidade::all();
         if (is_null($id)) {
             $action = '/admin/pagamento/inserir';
-            $nome = null;
+            $id_aluno = null;
             $mes_referente = null;
             $dt_vencimento = null;
             $vl_mensalidade = null;
-            $id_aluno = null;
             $modalidade = null;
+
         
         } else {
             $action = '/admin/pagamento/alterar/' . $id;
-            $pagamentos = Pagamento::find($id);
-            $nome = $pagamentos->nome;
-            $mes_referente = $pagamentos->mes_referente;
-            $dt_vencimento = $pagamentos->dt_vencimento;
+            $pagamentos     = Pagamento::find($id);
+            $aluno       = $pagamentos->aluno_id;
+            $mes_referente  = $pagamentos->mes_referente;
+            $dt_vencimento  = $pagamentos->dt_vencimento;
             $vl_mensalidade = $pagamentos->vl_mensalidade;
-            $id_aluno = $pagamentos->id_aluno;
-            $modalidade = $pagamentos->id_modalidade;
-
+            $modalidade     = $pagamentos->modalidade_id;
         }
+
         return view('admin.pagamento.editar', compact(
                                                 'id',
                                                 'action',
-                                                'nome',
+                                                'aluno',
                                                 'mes_referente',
                                                 'dt_vencimento',
                                                 'vl_mensalidade',
-                                                'id_aluno',
-                                                'modalidade'
+                                                'modalidade',
+                                                'alunos',
+                                                'modalidades'
                                                  ));
     }
     public function inserir(Request $request, Pagamento $pagamento)
     {        
+        $alunos = Aluno::all();
         $response = $pagamento->inserir($request->all());
         
         if ($response['success'])
         return redirect()
-                    ->route('admin.pagamento')
+                    ->route('admin.pagamento', compact('alunos'))
                     ->with('success', $response['message']);
     
         return redirect()

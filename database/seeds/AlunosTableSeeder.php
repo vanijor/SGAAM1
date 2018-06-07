@@ -25,8 +25,24 @@ class AlunosTableSeeder extends Seeder
             'dt_nascimento' =>'1989-03-21',
             'telefone' =>'13998765432',
             'email'  =>'fulano@domain.com',
-            'id_plano'=>1,
-            'id_modalidade' =>1,
+            'plano_id'=>1,
+            'modalidade_id' =>1,
+        ]);
+        Aluno::create([
+            'nome'  => 'Beotrano',
+            'cpf'   => '75123324319',
+            'rg'    =>'236786890',
+            'cep'   =>'11333155',
+            'rua'   =>'Rua das ruoes',
+            'numero'=> '433',
+            'bairro'=>'Bairristao',
+            'cidade'=>'São Paulo',
+            'estado'=>'SP',
+            'dt_nascimento' =>'1989-02-02',
+            'telefone' =>'13956765432',
+            'email'  =>'fulano@domain.com',
+            'plano_id'=>1,
+            'modalidade_id' =>1,
         ]);
     }
 }

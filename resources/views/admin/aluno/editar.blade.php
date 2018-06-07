@@ -78,11 +78,21 @@
                 </div>
                 <div class="form-group">
                     <label for="plano">Plano</label>
-                    <input type="text" class="form-control" name="plano" id="plano" value="{{ $plano }}">
+                    <select name="" id="">
+                        <option value="">Selecione</option>
+                        @foreach($planos as $plano)
+                            <option value="${{$plano->id}}">{{$plano->tipo}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="modalidade">Modalidade</label>
-                    <input type="text" class="form-control" name="modalidade" id="modalidade" value="{{ $modalidade }}">
+                        <select name="modalidade" id="modalidade" class="form-control">
+                        <option value="">Selecione</option>
+                        @foreach($modalidades as $modalidade)
+                            <option value="{{$modalidade->id}}">{{$modalidade->nome}}</option>
+                        @endforeach
+                        </select>
                 </div>
                 
 				<input type="submit" class="btn btn-primary" value="Editar">
@@ -137,11 +147,21 @@
                 </div>
                 <div class="form-group">
                     <label for="plano">Plano</label>
-                    <input type="text" class="form-control" name="plano" id="plano"  value="{{ old('plano') }}">
+                    <select name="" id="" class="form-control">
+                        <option value="">Selecione</option>
+                        @foreach($planos as $plano)
+                            <option value="${{$plano->id}}">{{$plano->tipo}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="modalidade">Modalidade</label>
-                    <input type="text" class="form-control" name="modalidade" id="modalidade"  value="{{ old('modalidade') }}">
+                        <select name="modalidade" id="modalidade" class="form-control">
+                        <option value="">Selecione</option>
+                        @foreach($modalidades as $modalidade)
+                            <option value="{{$modalidade->id}}">{{$modalidade->nome}}</option>
+                        @endforeach
+                        </select>
                 </div>
 
 				<input type="submit" class="btn btn-primary" value="Adicionar">

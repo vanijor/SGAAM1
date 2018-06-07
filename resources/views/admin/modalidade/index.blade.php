@@ -39,7 +39,7 @@
                     <td>{{ $modalidade->nome }}</td>
                     <td>{{ $modalidade->qt_aulasem }}</td>
                     <td>{{ $modalidade->qt_hraula }}</td>
-                    <td>{{ $modalidade->id_professor }}</td>
+                    <td>{{ $modalidade->typeProf($modalidade->professor_id) }}</td>
                     <td class="text-center">
                         <a class="btn btn-info " href="modalidade/editar/{{ $modalidade->id }}"><i class="fa fa-edit"></i></a>
                         <a class="btn btn-danger" href="modalidade/excluir/{{ $modalidade->id }}"><i class="fa fa-trash"></i></a>

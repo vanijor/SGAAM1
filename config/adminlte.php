@@ -110,24 +110,14 @@ return [
     'menu' => [
         'MENU',
         [
-            'text' => 'Cargo',
-            'url'  => 'admin/cargo',
-            'icon'  => 'id-badge',
-        ],
-        [
-            'text' => 'Funcionário',
-            'url'  => 'admin/funcionario',
-            'icon'  => 'user',
-        ],
-        [
-            'text' => 'Professor',
-            'url'  => 'admin/professor',
-            'icon'  => 'user',
-        ],
-        [
             'text' => 'Aluno',
             'url'  => 'admin/aluno',
-            'icon'  => 'user',
+            'icon'  => 'users',
+        ],
+        [
+            'text' => 'Chamada',
+            'url'  => 'admin/chamada',
+            'icon'  => 'check',
         ],
         [
             'text' => 'Modalidade',
@@ -137,13 +127,19 @@ return [
         [
             'text' => 'Pagamento',
             'url'  => 'admin/pagamento',
-            'icon'  => 'credit-card',
+            'icon' => 'money',
         ],
         [
             'text' => 'Plano',
             'url'  => 'admin/plano',
             'icon'  => 'list-alt',
         ],
+        [
+            'text' => 'Professor',
+            'url'  => 'admin/professor',
+            'icon'  => 'user',
+        ],
+        
     ],
 
     /*

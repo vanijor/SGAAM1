@@ -18,9 +18,9 @@
             <i class="fa fa-plus"></i>
         </a>
     </div>
-    <div class="box-body table-bordered table-hover table-responsive no-padding">
+    <div class="box-body">
         @include('admin.includes.alerts')
-        <table class="table table-hover">
+        <table class="table table-bordered table-hover table-responsive">
         {!! csrf_field() !!}
         <thead>
             <tr>
@@ -28,7 +28,6 @@
                 <th>RG</th>
                 <th>CPF</th>
                 <th>CEP</th>
-                <th>Endereço</th>
                 <th>Data Nascimento</th>
                 <th>Telefone</th>
                 <th>E-mail</th>
@@ -42,17 +41,20 @@
                     <td>{{ $aluno->nome }}</td>
                     <td>{{ $aluno->rg }}</td>
                     <td>{{ $aluno->cpf }}</td>
-                    <td>{{ $aluno->cep }}</td>
-                    <td>{{ $aluno->rua }},
-                        {{ $aluno->numero }}-
-                        {{ $aluno->bairro }}-
-                        {{ $aluno->cidade }}-
-                        {{ $aluno->estado }}</td>
+                    <td>{{ $aluno->cep }}
+                        <a href="#" data-toggle="popover" title="Endereço" data-content="
+                        {{ $aluno->rua }},
+                        {{ $aluno->numero }} -
+                        {{ $aluno->bairro }} -
+                        {{ $aluno->cidade }} /
+                        {{ $aluno->estado }}" data-trigger="focus" data-placement="bottom"> <i class="fa fa-info-circle"></i>
+                        </a>
+                    </td>
                     <td>{{ $aluno->dt_nascimento }}</td>
                     <td>{{ $aluno->telefone }}</td>
                     <td>{{ $aluno->email }}</td>
-                    <td>{{ $aluno->id_plano }}</td>
-                    <td>{{ $aluno->id_modalidade }}</td>
+                    <td>{{ $aluno->typePlano($aluno->plano_id) }}</td>
+                    <td>{{ $aluno->typeModa($aluno->modalidade_id) }}</td>
                     <td class="text-center">
                         <a class="btn btn-info " href="aluno/editar/{{ $aluno->id }}"><i class="fa fa-edit"></i></a>
                         <a class="btn btn-danger" href="aluno/excluir/{{ $aluno->id }}"><i class="fa fa-trash"></i></a>

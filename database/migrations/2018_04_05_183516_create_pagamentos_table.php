@@ -15,12 +15,11 @@ class CreatePagamentosTable extends Migration
     {
         Schema::create('pagamentos', function (Blueprint $table) {
             $table->increments('id')->unique();
-            $table->string('nome');
+            $table->integer('aluno_id')->references('id')->on('alunos');
             $table->string('mes_referente');
             $table->date('dt_vencimento');
             $table->double('vl_mensalidade');
-            $table->integer('id_aluno')->references('id')->on('alunos')->onDelete('cascade');
-            $table->integer('id_modalidade')->references('id')->on('modalidades')->onDelete('cascade');
+            $table->integer('modalidade_id')->references('id')->on('modalidades');
             $table->timestamps();
         });
     }

@@ -62,5 +62,10 @@
 @endif
 
 @yield('adminlte_js')
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();   
+});
+</script>
 </body>
 </html>

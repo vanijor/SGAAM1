@@ -15,8 +15,19 @@ class CreateProfessorsTable extends Migration
     {
         Schema::create('professors', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_funcionario')->references('id')->on('funcionarios')->onDelete('cascade');
-            $table->integer('id_modalidade')->references('id')->on('modalidades')->onDelete('cascade');
+            $table->string('nome');
+            $table->bigInteger('rg');
+            $table->bigInteger('cpf')->unique();
+            $table->integer('cep');
+            $table->string('rua');
+            $table->integer('numero');
+            $table->string('bairro');
+            $table->string('cidade');
+            $table->string('estado');
+            $table->date('nascimento');
+            $table->integer('telefone');
+            $table->string('email');
+            $table->integer('modalidade_id')->references('id')->on('modalidades');
             $table->timestamps();
         });
     }

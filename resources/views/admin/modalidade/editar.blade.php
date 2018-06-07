@@ -24,7 +24,7 @@
     <div class="box-header">
     </div>
     <div class="box-body">
-        @include('admin.includes.alerts')
+    @include('admin.includes.alerts')
         <form method="POST" action="{{ $action }}">
             {!! csrf_field() !!}
             @if (isset($id))
@@ -60,7 +60,12 @@
                 </div>
                 <div class="form-group">
                     <label for="professor">Professor</label>
-                    <input type="text" class="form-control" name="professor" id="professor" value="{{ $professor }}">
+                    <select name"professor" id="professor" class="form-control">
+                        <option value="">Selecione</option>
+                        @foreach ( $professores as $professor )
+                            <option value="{{ $professor->id }}">{{ $professor->nome }}</option>
+                        @endforeach
+                    </select>
                 </div>
 				<input type="submit" class="btn btn-primary" value="Adicionar">
 			@endif

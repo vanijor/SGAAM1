@@ -3,84 +3,82 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Plano;
+use App\Models\Modalidade;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class PlanoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $pages = 5;
     public function index()
     {
-        return view('admin.plano.index');
+        $planos = Plano::all();
+        $planos = Plano::paginate($this->pages);
+        return view('admin.plano.index', compact('planos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function editar($id = null)
     {
-        //
+        $modalidades = Modalidade::all();
+        if (is_null($id)) {
+            $action = '/admin/plano/inserir';
+            $tipo = null;
+            $forma_pgto = null;
+            $modalidade = null;
+           
+        } else {
+            $action = '/admin/plano/alterar/' . $id;
+            $planos        = Plano::find($id);
+            $tipo          = $planos->tipo;
+            $forma_pgto    = $planos->forma_pagamento;
+            $modalidade    = $planos->modalidade_id;
+        }
+
+        return view('admin.plano.editar', compact(
+                                                'id',
+                                                'action',
+                                                'tipo',
+                                                'forma_pgto',
+                                                'modalidade',
+                                                'planos',
+                                                'modalidades',
+                                                'plano'
+                                                 ));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function inserir(Request $request, Plano $plano)
     {
-        //
+        $response = $plano->inserir($request->all());
+        
+        if ($response['success'])
+        return redirect()
+                    ->route('admin.plano')
+                    ->with('success', $response['message']);
+    
+        return redirect()
+                    ->route('admin.plano')
+                    ->with('error', $response['message']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Plano  $plano
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Plano $plano)
+    public function alterar(Request $request, $id)
     {
-        //
+        $planos = Plano::find($id);
+        $response = $planos->editar($request->all());
+        
+        if ($response['success'])
+        return redirect()
+                    ->route('admin.plano')
+                    ->with('success', $response['message']);
+    
+        return redirect()
+                    ->route('admin.plano')
+                    ->with('error', $response['message']);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Plano  $plano
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Plano $plano)
+    public function excluir($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Plano  $plano
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Plano $plano)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Plano  $plano
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Plano $plano)
-    {
-        //
+        Plano::destroy($id);
+        return redirect()
+                    ->route('admin.plano');
     }
 }

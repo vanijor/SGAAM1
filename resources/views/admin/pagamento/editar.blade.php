@@ -32,9 +32,9 @@
                     <label for="nome">Nome</label>
                     <select name="nome" id="nome" class="form-control">
                         <option>Selecione</option>
-                        @foreach
-                        <option value="{{ alunoToPagamento() }}"></option>
-                        @endfor
+                            @foreach($alunos as $aluno)
+                        <option value="{{ $key }}">{{ $aluno->nome }}</option>
+                            @endforeach
                     </select>
                 </div>
                 <div class="form-group col-xs-4">
@@ -53,9 +53,12 @@
                     id="vl_mensalidade" value="{{ $vl_mensalidade }}">
                 </div>
                 <div class="form-group col-xs-4">
-                    <label for="id_modalidade">Modalidade</label>
-                    <select name="id_modalidade" id="id_modalidade" class="form-control">
-                        <option value="{{ $modalidade }}">Selecione</option>
+                <label for="modalidade">Modalidade</label>
+                    <select name="modalidade" id="modalidade" class="form-control">
+                        <option>Selecione</option>
+                            @foreach($modalidades as $modalidade)
+                        <option value="{{ $modalidade->id }}">{{ $modalidade->nome }}</option>
+                            @endforeach
                     </select>
                 </div>
                 
@@ -63,12 +66,12 @@
 
             @else
                 <div class="form-group col-xs-4">
-                    <label for="nome">Nome</label>
+                <label for="nome">Nome</label>
                     <select name="nome" id="nome" class="form-control">
                         <option>Selecione</option>
-                        @foreach
-                        <option value="{{ alunoToPagamento }}"></option>
-                        @endfor
+                            @foreach($alunos as $aluno)
+                        <option value="{{ $aluno->id }}">{{ $aluno->nome }}</option>
+                            @endforeach
                     </select>
                 </div>
                 <div class="form-group col-xs-4">
@@ -87,9 +90,12 @@
                     id="vl_mensalidade" value="{{ $vl_mensalidade }}">
                 </div>
                 <div class="form-group col-xs-4">
-                    <label for="id_modalidade">Modalidade</label>
-                    <select name="id_modalidade" id="id_modalidade" class="form-control">
-                        <option value="{{ $modalidade }}">Selecione</option>
+                <label for="modalidade">Modalidade</label>
+                    <select name="modalidade" id="modalidade" class="form-control">
+                        <option>Selecione</option>
+                            @foreach($modalidades as $modalidade)
+                        <option value="{{ $modalidade->id }}">{{ $modalidade->nome }}</option>
+                            @endforeach
                     </select>
                 </div>
 

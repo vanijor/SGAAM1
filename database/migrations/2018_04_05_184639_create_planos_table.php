@@ -17,7 +17,7 @@ class CreatePlanosTable extends Migration
             $table->increments('id')->unique();
             $table->string('tipo');
             $table->string('forma_pagamento');
-            $table->integer('id_modalidade')->references('id')->on('modalidades')->onDelete('cascade');
+            $table->integer('modalidade_id')->references('id')->on('modalidades');
             $table->timestamps();
         });
     }

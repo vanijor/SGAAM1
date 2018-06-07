@@ -2,12 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Pagamento;
 use App\Models\Aluno;
+use App\Models\Modalidade;
+use App\Models\Pagamento;
+use Illuminate\Database\Eloquent\Model;
 
 class Pagamento extends Model
-{   
+{
+    protected $fillable = [
+        'aluno_id',
+        'mes_referente',
+        'dt_vencimento',
+        'vl_mensalidade',
+        'modalidade_id',
+    ];
     public function modalidade()
     {
         return $this->hasMany(Pagamento::class);
@@ -18,60 +26,62 @@ class Pagamento extends Model
         return $this->hasOne(Aluno::class);
     }
 
-    public function alunoToPagamento()
+    public function typeAluno($type = null)
     {
-        return $aluno = DB::table('alunos');
+        $aluno = Aluno::find($type);
+        $nome = $aluno->nome;
+
+        return $nome;
     }
 
-    protected $fillable = [
-                            'nome',
-                            'mes_referente',
-                            'dt_vencimento',
-                            'vl_mensalidade',
-                            'id_aluno',
-                            'modalidade'
-                          ];
-
-    public function inserir($pagamentos) : Array
+    public function typeModa($type = null)
     {
-        $this->nome = $pagamentos['nome'];
+        $modalidade = Modalidade::find($type);
+        $nome = $modalidade->nome;
+
+        return $nome;
+    }
+
+    public function inserir($pagamentos): array
+    {
+        $this->aluno_id = $pagamentos['aluno'];
         $this->mes_referente = $pagamentos['mes_referente'];
         $this->dt_vencimento = $pagamentos['dt_vencimento'];
         $this->vl_mensalidade = $pagamentos['vl_mensalidade'];
-        $this->id_aluno = Aluno::find($id);
-        $this->modalidade = $pagamentos['modalidade'];
+        $this->modalidade_id = $pagamentos['modalidade'];
         $add = $this->save();
 
-        if ($add)
-            return[
+        if ($add) {
+            return [
                 'success' => true,
-                'message' => 'Pagamento Efetuado com Sucesso!'
+                'message' => 'Pagamento Efetuado com Sucesso!',
             ];
-        
-        return[
+        }
+
+        return [
             'success' => false,
-            'message' => 'Erro ao Adicionar o Pagamento'
+            'message' => 'Erro ao Adicionar o Pagamento',
         ];
     }
-    public function editar($pagamentos) : Array
-    {   
-        $this->nome = $pagamentos['nome'];
+    public function editar($pagamentos): array
+    {
+        $this->aluno_id = $pagamentos['nome'];
         $this->mes_referente = $pagamentos['mes_referente'];
         $this->dt_vencimento = $pagamentos['dt_vencimento'];
         $this->vl_mensalidade = $pagamentos['vl_mensalidade'];
-        $this->id_aluno = Aluno::find($id);
-        $this->modalidade = $pagamentos['modalidade'];
+        $this->modalidade_id = $pagamentos['modalidade'];
         $$edit = $this->save();
 
-        if ($edit)
-            return[
+        if ($edit) {
+            return [
                 'success' => true,
-                'message' => 'Pagamento Editado com Sucesso!'
+                'message' => 'Pagamento Editado com Sucesso!',
             ];
-        
-        return[
+        }
+
+        return [
             'success' => false,
-            'message' => 'Erro ao Editar o Pagamento'
+            'message' => 'Erro ao Editar o Pagamento',
         ];
     }
 }
