@@ -42,29 +42,34 @@
                 </div>
                 <div class="form-group">
                     <label for="professor">Professor</label>
-                    <input type="text" class="form-control" name="professor" id="professor" value="{{ $professor }}">
+                    <select name"professor" id="professor" class="form-control">
+                        <option value="">--Selecione--</option>
+                            @foreach ( $professores as $professor )
+                                <option value="{{ $professor->id }}">{{ $professor->nome }}</option>
+                            @endforeach
+                       </select>
                 </div>
 				<input type="submit" class="btn btn-primary" value="Editar">
             @else
                 <div class="form-group">
                     <label for="modalidade">Modalidade</label>
-                    <input type="text" class="form-control" name="modalidade" id="modalidade" value="{{ $modalidade }}">
+                    <input type="text" class="form-control" name="modalidade" id="modalidade" value="{{ old('modalidade') }}">
                 </div>
                 <div class="form-group">
                     <label for="semanal">Qt Aula Semanal</label>
-                    <input type="text" class="form-control" name="semanal" id="semanal" value="{{ $semanal }}">
+                    <input type="text" class="form-control" name="semanal" id="semanal" value="{{ old('semanal') }}">
                 </div>
                 <div class="form-group">
                     <label for="horas">Horas Aula</label>
-                    <input type="text" class="form-control" name="horas" id="horas" value="{{ $horas }}">
+                    <input type="text" class="form-control" name="horas" id="horas" value="{{ old('horas') }}">
                 </div>
                 <div class="form-group">
-                    <label for="professor">Professor</label>
-                    <select name"professor" id="professor" class="form-control">
+                <label for="professor">Professor</label>
+                    <select name="professor" id="professor" class="form-control">
                         <option value="">Selecione</option>
-                        @foreach ( $professores as $professor )
-                            <option value="{{ $professor->id }}">{{ $professor->nome }}</option>
-                        @endforeach
+                            @foreach($professores as $professor)
+                        <option value="{{ $professor->id }}">{{ $professor->nome }}</option>
+                            @endforeach
                     </select>
                 </div>
 				<input type="submit" class="btn btn-primary" value="Adicionar">

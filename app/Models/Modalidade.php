@@ -31,8 +31,9 @@ class Modalidade extends Model
         $this->qt_aulasem = $modalidade['semanal'];
         $this->qt_hraula = $modalidade['horas'];
         $this->professor_id = $modalidade['professor'];
-
+        
         $add = $this->save();
+
 
         if ($add)
             return[

@@ -45,6 +45,8 @@
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
 @if(config('adminlte.plugins.select2'))
     <!-- Select2 -->
@@ -62,10 +64,23 @@
 @endif
 
 @yield('adminlte_js')
+<!-- popover endereco -->
 <script>
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover();   
 });
 </script>
+<!-- busca -->
+<script>
+    $(document).ready(function() {
+        $('#tbjs').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+            }
+        });
+    });
+</script>
+<!-- validacao RG -->
+<script src="{{ asset('js/index.js') }}"></script>
 </body>
 </html>

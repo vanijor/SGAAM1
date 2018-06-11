@@ -27,7 +27,9 @@ class CreateProfessorsTable extends Migration
             $table->date('nascimento');
             $table->integer('telefone');
             $table->string('email');
-            $table->integer('modalidade_id')->references('id')->on('modalidades');
+            $table->integer('modalidade_id')->unsigned();
+            
+            $table->foreign('modalidade_id')->references('id')->on('modalidades');
             $table->timestamps();
         });
     }

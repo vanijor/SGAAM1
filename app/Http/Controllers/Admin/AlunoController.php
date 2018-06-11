@@ -86,6 +86,7 @@ class AlunoController extends Controller
     }
     public function inserir(Request $request, Aluno $aluno)
     {        
+        dd($request->all());
         $response = $aluno->inserir($request->all());
         
         if ($response['success'])

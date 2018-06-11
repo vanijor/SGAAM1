@@ -61,7 +61,6 @@ class Aluno extends Model
 
     public function inserir($alunos) : Array
     {
-        $this->id = $alunos('id');
         $this->nome = $alunos['nome'];
         $this->cpf = $alunos['cpf'];
         $this->rg = $alunos['rg'];

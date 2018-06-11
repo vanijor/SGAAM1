@@ -20,7 +20,7 @@
     </div>
     <div class="box-body">
         @include('admin.includes.alerts')
-        <table class="table table-bordered table-hover table-responsive">
+        <table id="tbjs" class="table table-bordered table-hover table-responsive">
         {!! csrf_field() !!}
         <thead>
             <tr>
@@ -43,7 +43,6 @@
             @endforeach
             </tbody>
         </table>
-        {!! $planos->links() !!}
     </div>
 </div>
 @stop

@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <label for="rg">RG</label>
-                    <input type="text" class="form-control" name="rg" id="rg" value="{{ $rg }}">
+                    <input type="text" class="form-control" name="rg" id="rg" value="{{ $rg }}" onKeyUp="nu(this)">
                 </div>
                 <div class="form-group">
                     <label for="cep">CEP</label>
@@ -78,10 +78,10 @@
                 </div>
                 <div class="form-group">
                     <label for="plano">Plano</label>
-                    <select name="" id="">
+                    <select name="plano" id="plano" class="form-control">
                         <option value="">Selecione</option>
                         @foreach($planos as $plano)
-                            <option value="${{$plano->id}}">{{$plano->tipo}}</option>
+                            <option value="{{ $plano->id }}">{{ $plano->tipo }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -95,7 +95,7 @@
                         </select>
                 </div>
                 
-				<input type="submit" class="btn btn-primary" value="Editar">
+				<input type="submit" class="btn btn-primary" value="Editar"  onClick="if(document.getElementById('rg').value != ''){ValRG(document.getElementById('rg').value)}else{alert('RG em branco')}">
             @else
                 <div class="form-group">
                     <label for="nome">Nome</label>
@@ -107,7 +107,7 @@
                 </div>
                 <div class="form-group">
                     <label for="rg">RG</label>
-                    <input type="text" class="form-control" name="rg" id="rg"  value="{{ old('rg') }}">
+                    <input type="text" class="form-control" name="rg" id="rg"  value="{{ old('rg') }}" onKeyUp="nu(this)">
                 </div>
                 <div class="form-group">
                     <label for="cep">CEP</label>
@@ -147,24 +147,24 @@
                 </div>
                 <div class="form-group">
                     <label for="plano">Plano</label>
-                    <select name="" id="" class="form-control">
+                    <select name="plano" id="plano" class="form-control">
                         <option value="">Selecione</option>
                         @foreach($planos as $plano)
-                            <option value="${{$plano->id}}">{{$plano->tipo}}</option>
+                            <option value="{{ $plano->id }}">{{ $plano->tipo }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="modalidade">Modalidade</label>
-                        <select name="modalidade" id="modalidade" class="form-control">
+                    <select name="modalidade" id="modalidade" class="form-control">
                         <option value="">Selecione</option>
                         @foreach($modalidades as $modalidade)
-                            <option value="{{$modalidade->id}}">{{$modalidade->nome}}</option>
+                            <option value="{{ $modalidade->id }}">{{ $modalidade->nome }}</option>
                         @endforeach
-                        </select>
+                    </select>
                 </div>
 
-				<input type="submit" class="btn btn-primary" value="Adicionar">
+				<input type="submit" class="btn btn-primary" value="Adicionar"  onClick="if(document.getElementById('rg').value != ''){ValRG(document.getElementById('rg').value)}else{alert('RG em branco')}">
 			@endif
         </form>        
     </div>

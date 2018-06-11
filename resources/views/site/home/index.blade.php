@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>MAMS</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -78,10 +78,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Sistema de Gerenciamento para Academia
+                    MAMS
                 </div>
                 <div>
-                <img src="{{URL::asset('/images/logoct.png')}}" style="width:400px; height:400px;">
+                <img src="{{URL::asset('/images/MAMS.png')}}" style="width:400px; height:400px;">
                 </div>
             </div>
         </div>
