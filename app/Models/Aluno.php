@@ -19,6 +19,11 @@ class Aluno extends Model
     {
         return $this->hasMany(Chamada::class);
     }
+    
+    public function plano()
+    {
+        return $this->hasMany(Plano::class);
+    }
 
     public function typeModa($type)
     {   

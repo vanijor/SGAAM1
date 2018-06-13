@@ -18,10 +18,10 @@ class CreateModalidadesTable extends Migration
             $table->string('nome');
             $table->integer('qt_aulasem');
             $table->integer('qt_hraula');
-            $table->integer('professor_id')->unsigned()->nullable();
-
-            $table->foreign('professor_id')->references('id')->on('professors');
+            $table->integer('professor_id')->references('id')->on('professors')->nullable();
+            
             $table->timestamps();
+
         });
     }
 

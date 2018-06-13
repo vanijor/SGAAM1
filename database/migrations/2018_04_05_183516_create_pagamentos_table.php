@@ -20,6 +20,7 @@ class CreatePagamentosTable extends Migration
             $table->date('dt_vencimento');
             $table->double('vl_mensalidade');
             $table->integer('modalidade_id')->references('id')->on('modalidades');
+            
             $table->timestamps();
         });
     }
