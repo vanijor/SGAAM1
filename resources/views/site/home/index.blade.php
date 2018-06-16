@@ -71,15 +71,13 @@
                     @auth
                         <a href="{{ route('admin.home') }}">Home</a>
                         <a href="{{ route('profile') }}">Meu Perfil</a>
-                    @else
-                        <a href="{{ route('login') }}">Entrar</a>
                     @endauth
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    MAMS
+                    <a href="{{ route('login') }}" style="text-decoration: none; color: #000;">MAMS</a>
                 </div>
                 <div>
                 <img src="{{URL::asset('/images/MAMS.png')}}" style="width:400px; height:400px;">

@@ -14,7 +14,7 @@
                 <img class="img" src="{{URL::asset('/images/logoct.png')}}" style="width:250px; height:250px;">
     </div>
         <!-- /.login-logo -->
-        <div class="login-box-body ">
+        <div class="login-box-body" style="box-shadow: 0 0 15px rgba(0, 0, 0, .40);">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
             <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
                 {!! csrf_field() !!}
@@ -50,7 +50,7 @@
                     <!-- /.col -->
                     <div class="col-xs-4">
                         <button type="submit"
-                                class="btn btn-primary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
+                                class="btn btn-primary btn-block">{{ trans('adminlte::adminlte.sign_in') }}</button>
                     </div>
                     <!-- /.col -->
                 </div>
