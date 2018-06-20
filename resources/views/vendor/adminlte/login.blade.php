@@ -11,7 +11,7 @@
 @section('body')
     <div class="login-box">
         <div class="login-logo">
-                <img class="img" src="{{URL::asset('/images/logoct.png')}}" style="width:250px; height:250px;">
+                <img class="img" src="{{URL::asset('/images/logo.png')}}" style="width:250px; height:250px;">
     </div>
         <!-- /.login-logo -->
         <div class="login-box-body" style="box-shadow: 0 0 15px rgba(0, 0, 0, .40);">
@@ -55,17 +55,6 @@
                     <!-- /.col -->
                 </div>
             </form>
-            <div class="auth-links">
-                <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}"
-                   class="text-center"
-                >{{ trans('adminlte::adminlte.i_forgot_my_password') }}</a>
-                <br>
-                @if (config('adminlte.register_url', 'register'))
-                    <a href="{{ url(config('adminlte.register_url', 'register')) }}"
-                       class="text-center"
-                    >{{ trans('adminlte::adminlte.register_a_new_membership') }}</a>
-                @endif
-            </div>
         </div>
         <!-- /.login-box-body -->
     </div><!-- /.login-box -->
