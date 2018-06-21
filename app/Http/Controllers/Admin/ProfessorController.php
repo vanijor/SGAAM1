@@ -55,7 +55,7 @@ class ProfessorController extends Controller
             $bairro = $professores->bairro;
             $cidade = $professores->cidade;
             $estado = $professores->estado;
-            $nascimento = $professores->dt_nascimento;
+            $nascimento = $professores->nascimento;
             $telefone = $professores->telefone;
             $email = $professores->email;
             $modalidade = $professores->modalidade_id;

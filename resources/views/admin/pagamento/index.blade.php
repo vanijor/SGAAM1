@@ -34,14 +34,15 @@
         <tbody>
             @foreach ($pagamentos as $pagamento)
                 <tr>
-                    <td>{{ $pagamento->typeAluno($pagamento->id_aluno) }}</td>
+                    <td>{{ $pagamento->typeAluno($pagamento->aluno_id) }}</td>
                     <td>{{ \Carbon\Carbon::parse($pagamento->mes_referente)->format('m/Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($pagamento->dt_vencimento)->format('d/m/Y') }}</td>
                     <td>{{ $pagamento->vl_mensalidade }}</td>
-                    <td>{{ $pagamento->typeModa($pagamento->id_modalidade) }}</td>
+                    <td>{{ $pagamento->typeModa($pagamento->modalidade_id) }}</td>
                     <td class="text-center">
                         <a class="btn btn-info " href="pagamento/editar/{{ $pagamento->id }}"><i class="fa fa-edit"></i></a>
-                        <a class="btn btn-danger" href="pagamento/excluir/{{ $pagamento->id }}"><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-danger" href="pagamento/excluir/{{ $pagamento->id }}"
+                        data-confirm="Tem certeza que deseja excluir este registro?"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
                 </tr>

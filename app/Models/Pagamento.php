@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 class Pagamento extends Model
 {
     protected $fillable = [
-        'aluno_id',
-        'mes_referente',
-        'dt_vencimento',
-        'vl_mensalidade',
-        'modalidade_id',
-    ];
+                    'aluno_id',
+                    'mes_referente',
+                    'dt_vencimento',
+                    'vl_mensalidade',
+                    'modalidade_id'
+                          ];
     public function modalidade()
     {
         return $this->hasMany(Pagamento::class);
@@ -50,7 +50,7 @@ class Pagamento extends Model
 
     public function inserir($pagamentos): array
     {
-        $this->aluno_id = $pagamentos['aluno'];
+        $this->aluno_id      = $pagamentos['nome'];
         $this->mes_referente = $pagamentos['mes_referente'];
         $this->dt_vencimento = $pagamentos['dt_vencimento'];
         $this->vl_mensalidade = $pagamentos['vl_mensalidade'];
@@ -71,12 +71,12 @@ class Pagamento extends Model
     }
     public function editar($pagamentos): array
     {
-        $this->aluno_id = $pagamentos['nome'];
+        $this->aluno_id = $pagamentos['aluno'];
         $this->mes_referente = $pagamentos['mes_referente'];
         $this->dt_vencimento = $pagamentos['dt_vencimento'];
         $this->vl_mensalidade = $pagamentos['vl_mensalidade'];
         $this->modalidade_id = $pagamentos['modalidade'];
-        $$edit = $this->save();
+        $edit = $this->save();
 
         if ($edit) {
             return [

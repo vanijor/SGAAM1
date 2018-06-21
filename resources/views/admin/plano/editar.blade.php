@@ -78,7 +78,7 @@
                         <option>Selecione a Modalidade</option>
                             @foreach($modalidades as $modalidade)
                             <option value="{{ $modalidade->id }}"
-                            @if($modalidade->id == $planos->id_modalidade)
+                            @if($modalidade->id == $planos->modalidade_id)
                             selected = 'selected'
                             @endif
                             >{{ $modalidade->nome }}</option>

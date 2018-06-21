@@ -58,7 +58,8 @@
                     <td>{{ $professor->typemoda($professor->modalidade_id) }}</td>
                     <td class="text-center">
                         <a class="btn btn-info " href="professor/editar/{{ $professor->id }}"><i class="fa fa-edit"></i></a>
-                        <a class="btn btn-danger" href="professor/excluir/{{ $professor->id }}"><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-danger" href="professor/excluir/{{ $professor->id }}"
+                        data-confirm="Tem certeza que deseja excluir este registro?"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
                 @endforeach

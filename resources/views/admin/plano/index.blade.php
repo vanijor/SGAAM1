@@ -37,7 +37,8 @@
                     <td>{{ $plano->typeModa($plano->modalidade_id) }}</td>
                     <td class="text-center">
                         <a class="btn btn-info " href="plano/editar/{{ $plano->id }}"><i class="fa fa-edit"></i></a>
-                        <a class="btn btn-danger" href="plano/excluir/{{ $plano->id }}"><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-danger" href="plano/excluir/{{ $plano->id }}"
+                        data-confirm="Tem certeza que deseja excluir este registro?"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
             @endforeach
