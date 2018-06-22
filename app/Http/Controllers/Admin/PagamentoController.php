@@ -30,31 +30,31 @@ class PagamentoController extends Controller
         $modalidades = Modalidade::all();
         if (is_null($id)) {
             $action = '/admin/pagamento/inserir';
-            $id_aluno = null;
+            $aluno_id = null;
             $mes_referente = null;
             $dt_vencimento = null;
             $vl_mensalidade = null;
-            $modalidade = null;
+            $modalidade_id = null;
 
         
         } else {
             $action = '/admin/pagamento/alterar/' . $id;
             $pagamentos     = Pagamento::find($id);
-            $aluno       = $pagamentos->aluno_id;
+            $aluno_id       = $pagamentos->aluno_id;
             $mes_referente  = $pagamentos->mes_referente;
             $dt_vencimento  = $pagamentos->dt_vencimento;
             $vl_mensalidade = $pagamentos->vl_mensalidade;
-            $modalidade     = $pagamentos->modalidade_id;
+            $modalidade_id  = $pagamentos->modalidade_id;
         }
 
         return view('admin.pagamento.editar', compact(
                                                 'id',
                                                 'action',
-                                                'aluno',
+                                                'aluno_id',
                                                 'mes_referente',
                                                 'dt_vencimento',
                                                 'vl_mensalidade',
-                                                'modalidade',
+                                                'modalidade_id',
                                                 'alunos',
                                                 'modalidades'
                                                  ));

@@ -53,9 +53,9 @@ class Modalidade extends Model
         $this->qt_hraula = $modalidade['horas'];
         $this->professor_id = $modalidade['professor'];
         
-        $add = $this->save();
+        $edit = $this->save();
 
-        if ($add)
+        if ($edit)
             return[
                 'success' => true,
                 'message' => 'Modalidade Editada com Sucesso!'

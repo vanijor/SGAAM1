@@ -11,7 +11,7 @@
 @section('body')
     <div class="login-box">
         <div class="login-logo">
-                <img class="img" src="{{URL::asset('/images/logoct.png')}}" style="width:250px; height:250px;">
+                <img class="img" src="{{URL::asset('/images/logo.png')}}" style="width:250px; height:250px;">
     </div>
         <!-- /.login-logo -->
         <div class="login-box-body" style="box-shadow: 0 0 15px rgba(0, 0, 0, .40);">
@@ -51,7 +51,10 @@
                     <!-- /.col -->
                 </div>
             </form>
+<<<<<<< HEAD
             
+=======
+>>>>>>> adc9788a63b4664b0c6068893a02e647415a706c
         </div>
         <!-- /.login-box-body -->
     </div><!-- /.login-box -->

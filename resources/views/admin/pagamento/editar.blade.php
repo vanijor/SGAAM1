@@ -33,7 +33,7 @@
                     <select name="nome" id="nome" class="form-control">
                         <option>Selecione</option>
                             @foreach($alunos as $aluno)
-                        <option value="{{ $key }}">{{ $aluno->nome }}</option>
+                        <option value="{{ $aluno->id }}">{{ $aluno->nome }}</option>
                             @endforeach
                     </select>
                 </div>

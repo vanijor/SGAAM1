@@ -42,10 +42,14 @@
                 </div>
                 <div class="form-group">
                     <label for="professor">Professor</label>
-                    <select name"professor" id="professor" class="form-control">
+                    <select name="professor" id="professor" class="form-control">
                         <option value="">--Selecione--</option>
                             @foreach ( $professores as $professor )
-                                <option value="{{ $professor->id }}">{{ $professor->nome }}</option>
+                                <option value="{{ $professor->id }}"
+                                    @if($professor->id == $modalidades->professor_id)
+                                        selected = 'selected'
+                                    @endif
+                                >{{ $professor->nome }}</option>
                             @endforeach
                        </select>
                 </div>

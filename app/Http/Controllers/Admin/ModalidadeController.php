@@ -35,7 +35,16 @@ class ModalidadeController extends Controller
             $horas = $modalidades->qt_hraula;
             $professor = $modalidades->professor_id;
         }
-        return view('admin.modalidade.editar', compact('id', 'action', 'modalidade', 'semanal', 'horas', 'professor', 'professores'));
+        return view('admin.modalidade.editar', compact(
+                                                       'id',
+                                                       'action',
+                                                       'modalidade',
+                                                       'semanal',
+                                                       'horas',
+                                                       'professor',
+                                                       'professores',
+                                                       'modalidades'
+                                                       ));
     }
 
     public function inserir(Request $request, Modalidade $modalidade)

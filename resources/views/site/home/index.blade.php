@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>MAMS</title>
+        <title>- SGAAM -</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -77,7 +77,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
+<<<<<<< HEAD
                     <a href="{{ route('login') }}" style="text-decoration: none; color: #000;">Sistema de Gerenciamento<br>de Academia de Artes Marciais</a>
+=======
+                    <a href="{{ route('login') }}" style="text-decoration: none; color: #000;">
+                    SISTEMA DE GERENCIAMENTO DE ACADEMIA DE ARTES MARCIAIS</a>
+>>>>>>> adc9788a63b4664b0c6068893a02e647415a706c
                 </div>
                 <div>
                 <img src="{{URL::asset('/images/MAMS.png')}}" style="width:400px; height:400px;" class="img-responsive">

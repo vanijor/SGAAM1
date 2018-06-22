@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <label for="rg">RG</label>
-                    <input type="text" class="form-control" name="rg" id="rg" value="{{ $rg }}" onKeyUp="nu(this)">
+                    <input type="text" class="form-control" name="rg" id="rg" value="{{ $rg }}">
                 </div>
                 <div class="form-group">
                     <label for="cep">CEP</label>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="form-group">
                     <label for="nascimento">Data Nascimento</label>
-                    <input type="text" class="form-control" name="nascimento" id="nascimento" value="{{ $nascimento }}">
+                    <input type="date" class="form-control" name="nascimento" id="nascimento" value="{{ $nascimento }}">
                 </div>
                 <div class="form-group">
                     <label for="telefone">Telefone</label>
@@ -81,21 +81,32 @@
                     <select name="plano" id="plano" class="form-control">
                         <option value="">Selecione</option>
                         @foreach($planos as $plano)
-                            <option value="{{ $plano->id }}">{{ $plano->tipo }}</option>
+                            <option value="{{$plano->id}}"
+                            @if($plano->id == $alunos->plano_id)
+                                selected = 'selected'
+                            @endif
+                            >{{$plano->typeModa($plano->modalidade_id)}} - 
+                             {{$plano->tipo}} - 
+                             {{$plano->forma_pagamento}}
+                            </option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="modalidade">Modalidade</label>
                         <select name="modalidade" id="modalidade" class="form-control">
-                        <option value="">Selecione</option>
+                        <option>Selecione a modalidade</option>
                         @foreach($modalidades as $modalidade)
-                            <option value="{{$modalidade->id}}">{{$modalidade->nome}}</option>
+                            <option value="{{$modalidade->id}}"
+                        @if($modalidade->id == $alunos->modalidade_id)
+                            selected = 'selected'
+                        @endif
+                        >{{ $modalidade->nome }}</option>
                         @endforeach
                         </select>
                 </div>
                 
-				<input type="submit" class="btn btn-primary" value="Editar"  onClick="if(document.getElementById('rg').value != ''){ValRG(document.getElementById('rg').value)}else{alert('RG em branco')}">
+				<input type="submit" class="btn btn-primary" value="Editar">
             @else
                 <div class="form-group">
                     <label for="nome">Nome</label>
@@ -107,7 +118,7 @@
                 </div>
                 <div class="form-group">
                     <label for="rg">RG</label>
-                    <input type="text" class="form-control" name="rg" id="rg"  value="{{ old('rg') }}" onKeyUp="nu(this)">
+                    <input type="text" class="form-control" name="rg" id="rg"  value="{{ old('rg') }}">
                 </div>
                 <div class="form-group">
                     <label for="cep">CEP</label>
@@ -131,11 +142,11 @@
                 </div>
                 <div class="form-group">
                     <label for="estado">Estado</label>
-                    <input type="text" class="form-control" name="estado" id="estado"   value="{{ old('estado') }}">
+                    <input type="text" class="form-control" name="estado" id="estado" value="{{ old('estado') }}">
                 </div>
                 <div class="form-group">
                     <label for="nascimento">Data Nascimento</label>
-                    <input type="text" class="form-control" name="nascimento" id="nascimento"  value="{{ old('nascimento') }}">
+                    <input type="date" class="form-control" name="nascimento" id="nascimento"  value="{{ old('nascimento') }}">
                 </div>
                 <div class="form-group">
                     <label for="telefone">Telefone</label>
@@ -148,23 +159,27 @@
                 <div class="form-group">
                     <label for="plano">Plano</label>
                     <select name="plano" id="plano" class="form-control">
-                        <option value="">Selecione</option>
+                        <option>Selecione</option>
                         @foreach($planos as $plano)
-                            <option value="{{ $plano->id }}">{{ $plano->tipo }}</option>
+                            <option value="{{$plano->id}}">
+                                {{$plano->typeModa($plano->modalidade_id)}} - 
+                                {{$plano->tipo}} - 
+                                {{$plano->forma_pagamento}}
+                            </option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="modalidade">Modalidade</label>
-                    <select name="modalidade" id="modalidade" class="form-control">
+                        <select name="modalidade" id="modalidade" class="form-control">
                         <option value="">Selecione</option>
                         @foreach($modalidades as $modalidade)
-                            <option value="{{ $modalidade->id }}">{{ $modalidade->nome }}</option>
+                            <option value="{{$modalidade->id}}">{{$modalidade->nome}}</option>
                         @endforeach
-                    </select>
+                        </select>
                 </div>
 
-				<input type="submit" class="btn btn-primary" value="Adicionar"  onClick="if(document.getElementById('rg').value != ''){ValRG(document.getElementById('rg').value)}else{alert('RG em branco')}">
+				<input type="submit" class="btn btn-primary" value="Adicionar">
 			@endif
         </form>        
     </div>

@@ -81,12 +81,13 @@ class AlunoController extends Controller
                                                 'plano',
                                                 'modalidade',
                                                 'modalidades',
-                                                'planos'
+                                                'planos',
+                                                'alunos'
                                                  ));
     }
     public function inserir(Request $request, Aluno $aluno)
     {        
-        dd($request->all());
+        
         $response = $aluno->inserir($request->all());
         
         if ($response['success'])

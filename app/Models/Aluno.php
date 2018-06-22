@@ -109,7 +109,7 @@ class Aluno extends Model
         $this->email = $alunos['email'];
         $this->plano_id = $alunos['plano'];
         $this->modalidade_id = $alunos['modalidade'];
-        $$edit = $this->save();
+        $edit = $this->save();
 
         if ($edit)
             return[
