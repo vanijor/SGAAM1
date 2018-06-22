@@ -7,6 +7,12 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Sistema de Gerenciamento de Academia de Artes Marciais
+
+Sistema que gerencia cadastros completos de alunos, professores, modalidades, planos e pagamentos.
+Desenvolvido Como Trabalho de Conclusão de Curso no modelo de Relatório Técnico na Faculdade de Tecnologia de Praia Grande Junho/2018.
+Está em desenvolvimento ainda e pretende receber diversas funcionalidades como controle de frequência, lista de chamada, envio de comprovante de pagamento por email.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
