@@ -26,21 +26,21 @@ class UserController extends Controller
         }
 
         $data['image'] = $user->image;
-        
+
         if ($request->hasFile('image') && $request->file('image')->isValid()){
-            if ($user->image){
+            if ($data['image'] != null){
                 $name = $user->image;
+                $nameFile = "{$name}";
             } else { 
                 $name = $user->id.kebab_case($user->name);//retira caracteres especiais
+                $extension = $request->image->extension();            
+                $nameFile = "{$name}.{$extension}";
             }
-
-            $extension = $request->image->extension();
-            $nameFile = "{$name}.{$extension}";
-
+            
             $data['image'] = $nameFile;
             
             $upload = $request->image->storeAs('users', $nameFile);
-
+            
             if (!$upload){
                 redirect()
                         ->back()
@@ -49,7 +49,7 @@ class UserController extends Controller
         }
         
         $update = $user->update($data);
-
+        
         if ($update)
             return redirect()
                             ->route('profile')

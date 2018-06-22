@@ -69,7 +69,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ route('admin.home') }}">Home</a>
+                        <a href="{{ route('admin.home') }}">Dashboard</a>
                         <a href="{{ route('profile') }}">Meu Perfil</a>
                     @endauth
                 </div>
@@ -77,10 +77,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <a href="{{ route('login') }}" style="text-decoration: none; color: #000;">MAMS</a>
+                    <a href="{{ route('login') }}" style="text-decoration: none; color: #000;">Sistema de Gerenciamento<br>de Academia de Artes Marciais</a>
                 </div>
                 <div>
-                <img src="{{URL::asset('/images/MAMS.png')}}" style="width:400px; height:400px;">
+                <img src="{{URL::asset('/images/MAMS.png')}}" style="width:400px; height:400px;" class="img-responsive">
                 </div>
             </div>
         </div>

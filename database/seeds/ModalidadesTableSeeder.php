@@ -16,7 +16,16 @@ class ModalidadesTableSeeder extends Seeder
             'nome'          =>'Boxe',
             'qt_aulasem'    =>'3',
             'qt_hraula'     =>'2',
-            'professor_id'  =>'1',
+        ]);
+        Modalidade::Create([
+            'nome'          =>'Jiujitsu',
+            'qt_aulasem'    =>'3',
+            'qt_hraula'     =>'2',
+        ]);
+        Modalidade::Create([
+            'nome'          =>'Karate',
+            'qt_aulasem'    =>'3',
+            'qt_hraula'     =>'2',
         ]);
     }
 }

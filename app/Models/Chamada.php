@@ -9,6 +9,11 @@ class Chamada extends Model
 {
     protected $fillable = ['aluno_id', 'presente'];
 
+    public function aluno()
+    {
+        return $this->hasMany(Aluno::class);
+    }
+
     public function typeAluno($type = null)
     {
         $alunos = Aluno::find($type);

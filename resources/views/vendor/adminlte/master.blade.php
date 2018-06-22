@@ -74,6 +74,7 @@ $(document).ready(function(){
 <script>
     $(document).ready(function() {
         $('#tbjs').DataTable({
+            
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
             }
